@@ -31,4 +31,7 @@ Route::post("/categories/disable", "CategoryController@disable")->name("categori
 Route::put("/categories", "CategoryController@update");
 
 
+Route::get("/actions/create", "ActionController@create")->name("actions:create");
+Route::post("/actions", "ActionController@store")->name("actions:create@presist");
+
 Route::get("/logout", "UserController@logout")->name("logout");
