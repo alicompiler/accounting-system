@@ -1,4 +1,4 @@
-<table class="ui celled striped table">
+<table class="ui right aligned celled striped table">
     <thead>
     <tr>
         <th>#</th>
@@ -17,7 +17,7 @@
             <td>{{$customer->name}}</td>
             <td>{{$customer->phone}}</td>
             <td>{{$customer->address}}</td>
-            <td>{{$customer->balance}}</td>
+            <td style="text-align:center;background: {{$customer->balance < 0 ? "#ff4335" : "#00b5ad"}}">{{$customer->balance}}</td>
             <td>{{date('Y-m-d' , strtotime($customer->created_at))}}</td>
             <td>
                 <a href="{{route("customers:edit" , ["id" => $customer->id])}}" class="ui icon yellow button">

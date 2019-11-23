@@ -51,7 +51,7 @@
                 </div>
 
 
-                <button class="ui large green button">
+                <button class="ui icon large green button">
                     <i class="save icon"></i>
                     حفظ
                 </button>

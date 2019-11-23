@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdefaf96-510e-4aba-9b54-b2f90ac9ad0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Repositories/ActionRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/RegisterActionService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/action/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/action/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/action/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/customers_table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/customers_table.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,13 +26,13 @@
         <counts>
           <entry key="env" value="1" />
           <entry key="js" value="1" />
-          <entry key="php" value="167" />
+          <entry key="php" value="170" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="1" />
-          <entry key="Blade" value="75" />
+          <entry key="Blade" value="78" />
           <entry key="JavaScript" value="1" />
           <entry key="PHP" value="92" />
         </counts>
@@ -44,13 +40,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="26" />
-          <entry key="php" value="8813" />
+          <entry key="php" value="8882" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="26" />
-          <entry key="Blade" value="3640" />
+          <entry key="Blade" value="3709" />
           <entry key="PHP" value="5173" />
         </counts>
       </usages-collector>
@@ -64,13 +60,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/action/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="31" column="42" lean-forward="true" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
-              <folding>
-                <element signature="e#40#62#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="496">
+              <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -92,7 +85,6 @@
         <option value="$PROJECT_DIR$/resources/views/customer/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/customer/close.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/customer/open.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/customer/customers_table.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/customer/disable.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/customer/active.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/category/edit.blade.php" />
@@ -108,9 +100,10 @@
         <option value="$PROJECT_DIR$/app/Models/Customer.php" />
         <option value="$PROJECT_DIR$/app/Models/Action.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/action/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Services/RegisterActionService.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ActionController.php" />
+        <option value="$PROJECT_DIR$/resources/views/customer/customers_table.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/action/create.blade.php" />
       </list>
     </option>
   </component>
@@ -296,7 +289,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="web.php&#9;FILE&#9;file:///Users/ali/Desktop/accounting-system/routes/web.php&#10;action&#9;FILE&#9;file:///Users/ali/Desktop/accounting-system/database/migrations/2019_11_23_175705_create_action_table.php&#10;Customer&#9;null&#9;null&#10;Catego&#9;null&#9;null&#10;categ&#9;FILE&#9;file:///Users/ali/Desktop/accounting-system/database/migrations/2019_11_23_160131_create_category_table.php&#10;صثز.&#9;FILE&#9;file:///Users/ali/Desktop/accounting-system/routes/web.php&#10;CustomerContro&#9;null&#9;null&#10;CustomerController&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="customer/index&#9;FILE&#9;file:///Users/ali/Desktop/accounting-system/resources/views/customer/index.blade.php&#10;web.php&#9;FILE&#9;file:///Users/ali/Desktop/accounting-system/routes/web.php&#10;action&#9;FILE&#9;file:///Users/ali/Desktop/accounting-system/database/migrations/2019_11_23_175705_create_action_table.php&#10;Customer&#9;null&#9;null&#10;Catego&#9;null&#9;null&#10;categ&#9;FILE&#9;file:///Users/ali/Desktop/accounting-system/database/migrations/2019_11_23_160131_create_category_table.php&#10;صثز.&#9;FILE&#9;file:///Users/ali/Desktop/accounting-system/routes/web.php&#10;CustomerContro&#9;null&#9;null&#10;CustomerController&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -332,12 +325,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574517802308</updated>
-      <workItem from="1574517805022" duration="10295000" />
+      <workItem from="1574517805022" duration="10635000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10295000" />
+    <option name="totallyTimeSpent" value="10635000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
@@ -413,13 +406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/action/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="55" column="23" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -439,11 +425,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="42" lean-forward="true" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+        <state relative-caret-position="418">
+          <caret line="22" column="64" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
           <folding>
             <element signature="e#40#62#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/customer/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/customer/customers_table.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/action/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
         </state>
       </provider>
     </entry>
