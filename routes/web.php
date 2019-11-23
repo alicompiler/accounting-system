@@ -31,6 +31,7 @@ Route::post("/categories/disable", "CategoryController@disable")->name("categori
 Route::put("/categories", "CategoryController@update");
 
 
+Route::get("/actions/{id}", "ActionController@single")->where("id", "[0-9]+")->name("actions:single");
 Route::get("/actions/create", "ActionController@create")->name("actions:create");
 Route::post("/actions", "ActionController@store")->name("actions:create@presist");
 

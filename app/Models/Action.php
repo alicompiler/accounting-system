@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property double amount
  * @property int type
+ * @property int id
  */
 class Action extends Model {
 
@@ -15,4 +16,12 @@ class Action extends Model {
 
     const ACTION_TYPE_WITHDRAW = 1;
     const ACTION_TYPE_DEPOSIT = 2;
+
+    public function customer() {
+        return $this->hasOne("App\Models\Customer", "id", "customer_id");
+    }
+
+    public function category() {
+        return $this->hasOne("App\Models\Category", "id", "category_id");
+    }
 }

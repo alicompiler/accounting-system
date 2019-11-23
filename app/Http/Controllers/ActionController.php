@@ -28,7 +28,11 @@ class ActionController extends Controller {
         $customer = Customer::findOrFail($request->get("customer_id"));
         $service = new RegisterActionService($action, $customer);
         $service->register();
-        //TODO : redirect to customer action report
-        return redirect(route("customers"));
+        return redirect(route("actions:single", ["id" => $action->id]));
+    }
+
+    public function single($id) {
+        $action = Action::findOrFail($id);
+        return view("action.single", ["action" => $action]);
     }
 }
