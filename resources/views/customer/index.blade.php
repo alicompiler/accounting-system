@@ -14,7 +14,13 @@
                 كل المشاريع
             </a>
         </div>
-        <div></div>
+        <div>
+            <form class="ui search form" action={{route("customers")}}>
+                <div class="ui search field">
+                    <input title="بحث" placeholder="بحث..." name="query">
+                </div>
+            </form>
+        </div>
     </div>
 
 

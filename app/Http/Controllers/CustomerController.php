@@ -14,8 +14,15 @@ class CustomerController extends Controller {
         $this->customerRepository = $customerRepository;
     }
 
-    public function index() {
-        $customers = $this->customerRepository->allActive();
+    public function index(Request $request) {
+        $query = $request->get("query");
+        if (strlen(trim($query)) > 0) {
+            $customers = $this->customerRepository->find(trim($query));
+        }
+        else {
+            $customers = $this->customerRepository->allActive();
+        }
+
         return view("customer.index", ["customers" => $customers]);
     }
 

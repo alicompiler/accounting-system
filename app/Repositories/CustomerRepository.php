@@ -33,6 +33,10 @@ class CustomerRepository {
     }
 
     public function all() {
-        return Customer::all();
+        return Customer::orderBy("active", "DESC")->all();
+    }
+
+    public function find(string $query) {
+        return Customer::where("name", "LIKE", "%$query%")->get();
     }
 }
