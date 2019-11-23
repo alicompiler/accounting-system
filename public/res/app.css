@@ -1,0 +1,211 @@
+body {
+    direction: rtl;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-segment {
+    padding: 8px;
+    background: #E2F6D5;
+}
+
+.key-span {
+    padding: 4px;
+    color: #777777;
+    width: 140px;
+    min-width: 140px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-right: 16px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.item-info {
+    padding: 8px 0;
+    display: flex;
+}
+
+
+.link-button {
+    cursor: pointer;
+}
+
+/*---- region App*/
+#app {
+    display: flex;
+}
+
+
+.app-container {
+    flex: 1;
+    max-height: 100vh;
+    height: 100vh;
+    min-height: 100vh;
+    overflow-y: auto;
+    background: #EDF1F6;
+}
+
+.app-header {
+    background: #FFF;
+    padding: 16px;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+}
+
+.app-header .user-info {
+    display: flex;
+    align-items: flex-start;
+}
+
+.app-header .user-info > img {
+    width: 48px;
+    height: 48px;
+    margin-left: 16px;
+}
+
+.app-header .user-info > .details > b {
+    font-size: 18px;
+    color: #343434;
+    margin-bottom: 10px;
+    display: block;
+}
+
+
+.app-header .user-info > .details .badges {
+    display: flex;
+}
+
+.app-header .user-info > .details .badges .badge {
+    display: flex;
+    margin-left: 32px;
+}
+
+
+.app-header .user-info > .details .badges .badge i {
+    color: #AAA;
+    margin-left: 6px;
+}
+
+/*---- endregion*/
+
+
+/*---- region SIDEBAR*/
+
+.sidebar {
+    background-color: #405068;
+    height: 100vh;
+}
+
+.sidebar .sidebar-menu {
+    width: 200px;
+    transition: width ease-out .5s;
+}
+
+.sidebar .sidebar-menu > .header {
+    background: #313249;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .sidebar-menu > .header > .avatar {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar .sidebar-menu > .header > .user-name {
+    color: #FFF;
+    font-size: 12px;
+    margin-right: 12px;
+}
+
+.sidebar .sidebar-menu > .content .box {
+    padding: 24px;
+    background: #313249;
+    color: #E2E7F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 24px;
+    border-radius: 3px;
+}
+
+.sidebar .sidebar-menu > .content > .items > .item {
+    display: flex;
+    padding: 12px 16px;
+    align-items: center;
+    margin: 8px 0;
+    position: relative;
+}
+
+.sidebar .sidebar-menu > .content > .items > .item.active {
+    background: #313249;
+}
+
+.sidebar .sidebar-menu > .content > .items > .item.active:before {
+    content: '';
+    width: 5px;
+    height: 100%;
+    background: #9879EA;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.sidebar .sidebar-menu > .content > .items > .item .caption {
+    font-size: 12px;
+    color: #E2E7F7;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.sidebar .sidebar-menu > .content > .items > .item .icon {
+    filter: invert(70%);
+    width: 18px;
+    height: 18px;
+}
+
+.sidebar .sidebar-menu > .content > .items > .item.active .icon {
+    filter: invert(100%);
+}
+
+.sidebar .sidebar-menu > .content > .items > .item.active .caption {
+    color: #FFF;
+}
+
+#main-menu {
+    display: none;
+}
+
+#drawer-button {
+    display: block;
+}
+
+@media only screen and (min-width: 1200px) {
+    #main-menu {
+        display: block;
+    }
+
+    #drawer-button {
+        display: none;
+    }
+}
+
+/*---- endregion*/
+
+/*---- region LoginForm*/
+.login.form.ui {
+    width: 400px;
+}
+
+@media only screen and (max-width: 600px) {
+    .login.form.ui {
+        width: 80%;
+    }
+}
+
+/*---- endregion*/
