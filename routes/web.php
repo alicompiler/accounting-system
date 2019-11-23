@@ -21,4 +21,14 @@ Route::put("/customers", "CustomerController@update");
 Route::post("/customers/disable", "CustomerController@disable")->name("customers:disable@presist");
 Route::post("/customers/active", "CustomerController@active")->name("customers:active@presist");
 Route::get("/customers/all", "CustomerController@all")->name("customers:all");
+
+
+Route::get("/categories", "CategoryController@index")->name("categories");
+Route::get("/categories/{id}/edit", "CategoryController@edit")->name("categories:edit");
+Route::post("/categories", "CategoryController@store");
+Route::post("/categories/active", "CategoryController@active")->name("categories:active");
+Route::post("/categories/disable", "CategoryController@disable")->name("categories:disable");
+Route::put("/categories", "CategoryController@update");
+
+
 Route::get("/logout", "UserController@logout")->name("logout");
