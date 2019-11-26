@@ -35,4 +35,9 @@ Route::get("/actions/{id}", "ActionController@single")->where("id", "[0-9]+")->n
 Route::get("/actions/create", "ActionController@create")->name("actions:create");
 Route::post("/actions", "ActionController@store")->name("actions:create@presist");
 
+
+Route::get("/report/customer", "ReportController@customerReport")->name("report:customer");
+Route::get("/report/action", "ReportController@actionReport")->name("report:action");
+
+
 Route::get("/logout", "UserController@logout")->name("logout");
