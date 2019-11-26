@@ -38,6 +38,7 @@ Route::post("/actions", "ActionController@store")->name("actions:create@presist"
 
 Route::get("/report/customer", "ReportController@customerReport")->name("report:customer");
 Route::get("/report/action", "ReportController@actionReport")->name("report:action");
+Route::get("/report/all-customers", "ReportController@allCustomersReport")->name("report:all-customers");
 
 
 Route::get("/logout", "UserController@logout")->name("logout");
