@@ -67,15 +67,15 @@
                             {{$row->id}}
                         </a>
                     </td>
-                    <td style="background: {{intval($totalDeposit - $totalWithdraw) >= 0 ? "#45D5D4" : "#D8A48F"}}">{{$totalDeposit - $totalWithdraw}}</td>
+                    <td style="background: {{intval($totalDeposit - $totalWithdraw) >= 0 ? "#45D5D4" : "#D8A48F"}}">{{number_format($totalDeposit - $totalWithdraw)}}</td>
                     <td style="">
                         @if ($row->type === \App\Models\Action::ACTION_TYPE_DEPOSIT)
-                            {{$row->amount}}
+                            {{number_format($row->amount)}}
                         @endif
                     </td>
                     <td style="">
                         @if ($row->type === \App\Models\Action::ACTION_TYPE_WITHDRAW)
-                            {{$row->amount}}
+                            {{number_format($row->amount)}}
                         @endif
                     </td>
                     <td>{{$row->customerName}}</td>
@@ -95,19 +95,24 @@
         @elseif (count($result) > 0)
             <div>
                 <div class="ui segment small header">مجموع الدائن :
-                    {{$totalDeposit}}
+                    {{number_format($totalDeposit)}}
                 </div>
                 <div class="ui segment small header">مجموع المدين :
-                    {{$totalWithdraw}}
+                    {{number_format($totalWithdraw)}}
                 </div>
 
-                <div class="ui segment small header">المجموع الكلي :
-                    {{($totalDeposit - $totalWithdraw)}}
+                <div class="ui segment small header">{{$totalDeposit - $totalWithdraw >= 0 ? "بذمتنا" : "بذمته"}} :
+                    {{(number_format($totalDeposit - $totalWithdraw))}}
                 </div>
             </div>
 
             <br/>
-            <a class="ui blue button">طباعة</a>
+            <a href="{{route("print:action" , [
+                        "fromDate" => request()->route()->parameter("fromDate") ,
+                        "toDate" => request()->route()->parameter("toDate")]
+                        )
+                     }}"
+               class="ui blue button">طباعة</a>
         @endif
     </div>
 

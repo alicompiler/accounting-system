@@ -24,7 +24,7 @@
                     </div>
                     <div class="field">
                         <label for="toDate">الي تاريخ</label>
-                        <input id="toDate" type="date" name="toDate" value="{{request()->query("toDate") , date('Y-m-d')}}"
+                        <input id="toDate" type="date" name="toDate" value="{{request()->query("toDate",date('Y-m-d'))}}"
                                placeholder="الي تاريخ"/>
                     </div>
                 </div>
@@ -75,15 +75,15 @@
                             {{$row->id}}
                         </a>
                     </td>
-                    <td style="background: {{intval($totalDeposit - $totalWithdraw) >= 0 ? "#45D5D4" : "#D8A48F"}}">{{$totalDeposit - $totalWithdraw}}</td>
+                    <td style="background: {{intval($totalDeposit - $totalWithdraw) >= 0 ? "#45D5D4" : "#D8A48F"}}">{{number_format($totalDeposit - $totalWithdraw)}}</td>
                     <td style="">
                         @if ($row->type === \App\Models\Action::ACTION_TYPE_DEPOSIT)
-                            {{$row->amount}}
+                            {{number_format($row->amount)}}
                         @endif
                     </td>
                     <td style="">
                         @if ($row->type === \App\Models\Action::ACTION_TYPE_WITHDRAW)
-                            {{$row->amount}}
+                            {{number_format($row->amount)}}
                         @endif
                     </td>
                     <td>{{$row->categoryName}}</td>
@@ -102,14 +102,14 @@
         @elseif (count($result) > 0)
             <div>
                 <div class="ui segment small header">مجموع الدائن :
-                    {{$totalDeposit}}
+                    {{number_format($totalDeposit)}}
                 </div>
                 <div class="ui segment small header">مجموع المدين :
-                    {{$totalWithdraw}}
+                    {{number_format($totalWithdraw)}}
                 </div>
 
                 <div class="ui segment small header">المجموع الكلي :
-                    {{($totalDeposit - $totalWithdraw)}}
+                    {{(number_format($totalDeposit - $totalWithdraw))}}
                 </div>
             </div>
 
