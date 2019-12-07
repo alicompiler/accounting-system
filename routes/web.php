@@ -52,5 +52,5 @@ Route::view("/", "main.main")->name("home")->middleware("auth");
 
 
 Route::get("/print/action", "ReportController@printActionsReport")->name("print:action")->middleware("auth");
-Route::get("/print/customer", "ReportController@printCustomerReport")->name("print:customer")->middleware("auth");
-Route::get("/print/action/{id}", "ReportController@printSingleAction")->name("print:single-action")->middleware("auth");
+Route::get("/print/customer", "ReportController@printCustomersReport")->name("print:customer")->middleware("auth");
+Route::get("/print/action/{id}", "ReportController@printSingleActionReport")->name("print:single-action")->middleware("auth");

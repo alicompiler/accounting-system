@@ -1,47 +1,29 @@
-@extends("common.layout.main_layout")
+@extends("common.layout.print_layout")
 
-@section('container')
-    <div>
-        <form class="ui form">
+@section("container")
 
-            <div style="display: inline-flex;align-items: flex-end;">
 
-                <div class="fields" style="display: inline-flex;margin: 0;">
-                    <div class="field">
-                        <label for="customer_id">المشروع</label>
-                        <select required name="customer_id" id="customer_id" class="ui search dropdown">
-                            <option value="">المشروع</option>
-                            @foreach ($customers as $customer)
-                                <option {{request()->query("customer_id") == $customer->id ? "selected": ""}} value="{{$customer->id}}">{{$customer->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+    <div class="ui fluid container">
 
-                    <div class="field">
-                        <label for="fromDate">من تاريخ</label>
-                        <input id="fromDate" type="date" name="fromDate" value="{{request()->query("fromDate" , date('Y-m-d'))}}"
-                               placeholder="من تاريخ"/>
-                    </div>
-                    <div class="field">
-                        <label for="toDate">الي تاريخ</label>
-                        <input id="toDate" type="date" name="toDate" value="{{request()->query("toDate",date('Y-m-d'))}}"
-                               placeholder="الي تاريخ"/>
-                    </div>
+        <div style="display: flex;justify-content: space-between;align-items: flex-start">
+            <div class="ui header" style="margin: 0;">شركة نهر الكوفة</div>
+            <div class="ui header" style="margin: 0;">كشف حساب مشروع</div>
+            <div style="display: flex;align-items: center;flex-direction: column;">
+                <div class="ui labeled small input" style="display: flex;align-items: center;">
+                    <label class="ui label">من تاريخ</label>
+                    <input style="width : 128px;" value="{{request()->route()->parameter("fromDate" , "-")}}" title="" disabled/>
                 </div>
-
-
-                <button class="ui large blue button">
-                    ابحث
-                </button>
-
+                <br/>
+                <div class="ui labeled small input" style="display: flex;align-items: center;">
+                    <label class="ui label">الى تاريخ</label>
+                    <input style="width: 128px;" value="{{request()->route()->parameter("toDate" , "-")}}" title="" disabled/>
+                </div>
             </div>
+        </div>
 
-        </form>
-    </div>
-
-    <br/><br/><br/>
-
-    <div>
+        <div class="ui header">
+            اسم المشروع : {{$customer->name}}
+        </div>
 
         <table class="ui right aligned celled striped table">
             <thead>
@@ -58,7 +40,7 @@
             </thead>
             <tbody>
             @php
-                $totalDeposit =  0.0;
+                $totalDeposit = 0.0;
                 $totalWithdraw = 0.0;
                 $total = $result && count($result) > 0 ? $result[0]->prevBalance : 0.0;
             @endphp
@@ -108,35 +90,34 @@
                     <td>{{$row->date}}</td>
                 </tr>
             @endforeach
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="background: #EEEEEE;">{{number_format($totalDeposit)}}</td>
+                <td style="background: #EEEEEE;">{{number_format($totalWithdraw)}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             </tbody>
         </table>
 
-        @if ($result === null)
-        @elseif (count($result) == 0)
-            <div class="ui info center aligned message">
-                <div style="text-align: center;" class="header">لا توجد نتائج</div>
-            </div>
-        @elseif (count($result) > 0)
-            <div>
-                <div class="ui segment small header">الايرادات :
-                    {{number_format($totalDeposit)}}
-                </div>
-                <div class="ui segment small header">المصروفات :
-                    {{number_format($totalWithdraw)}}
-                </div>
+        <div style="" class="ui header">{{$total >= 0 ? "بذمتنا" : "بذمته"}} :
+            {{(number_format($total))}}
+            <span id="totalAsText" style="padding: 0 40px" data-value="{{$total}}"></span>
+        </div>
 
-                <div class="ui segment small header">{{$total >= 0 ? "بذمتنا" : "بذمته"}} :
-                    {{(number_format($total))}}
-                </div>
-            </div>
+        <script>
+            const totalAsTextElement = document.getElementById("totalAsText");
+            const value = totalAsTextElement.getAttribute("data-value");
+            const text = new NumberToWords(value).parse();
+            totalAsTextElement.innerText = text;
+        </script>
 
-            <br/>
-            <a href="{{route("print:customer" , ["fromDate" => request()->query("fromDate") ,
-                "toDate" => request()->query("toDate"),
-                "customer_id" => request()->query("customer_id")
-            ])}}"
-               target="_blank" class="ui blue button">طباعة</a>
-        @endif
     </div>
 
-@stop
+    <script>
+        window.print();
+    </script>
+@endsection

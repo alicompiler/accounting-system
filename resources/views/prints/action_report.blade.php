@@ -2,40 +2,35 @@
 
 @section("container")
     <style>
-        table {
-            page-break-inside: auto
-        }
-
-        tr {
-            page-break-inside: avoid;
-            page-break-after: auto
-        }
-
-        thead {
-            display: table-header-group
-        }
-
-        tfoot {
-            display: table-footer-group
-        }
-
-        @page {
-            @bottom-left {
-                content: counter(page) "/===" counter(pages);
-            }
-        }
 
 
     </style>
 
 
-        <table class="ui small right aligned celled table">
+    <div class="ui fluid container">
+
+        <div style="display: flex;justify-content: space-between;align-items: flex-start">
+            <div class="ui header" style="margin: 0;">شركة نهر الكوفة</div>
+            <div class="ui header" style="margin: 0;">تقرير عام</div>
+            <div style="display: flex;align-items: center;flex-direction: column;">
+                <div class="ui labeled small input" style="display: flex;align-items: center;">
+                    <label class="ui label">من تاريخ</label>
+                    <input style="width : 128px;" value="{{request()->route()->parameter("fromDate" , "-")}}" title="" disabled/>
+                </div>
+                <br/>
+                <div class="ui labeled small input" style="display: flex;align-items: center;">
+                    <label class="ui label">الى تاريخ</label>
+                    <input style="width: 128px;" value="{{request()->route()->parameter("toDate" , "-")}}" title="" disabled/>
+                </div>
+            </div>
+        </div>
+
+        <table class="ui right aligned celled striped table">
             <thead>
             <tr>
                 <th>رقم العملية</th>
-                <th>المجموع</th>
-                <th>الارادات</th>
-                <th>المصاريف</th>
+                <th>المبلغ</th>
+                <th>النوع</th>
                 <th>المشروع</th>
                 <th>الصنف</th>
                 <th>التفاصيل</th>
@@ -43,52 +38,20 @@
             </tr>
             </thead>
             <tbody>
-            @php
-                $totalDeposit = 0.0;
-                $totalWithdraw = 0.0;
-            @endphp
             @foreach($result ? $result : [] as $row)
-                @php
-                    /** @var array $row */
-                    if ($row->type === \App\Models\Action::ACTION_TYPE_DEPOSIT){
-                        $totalDeposit += $row->amount;
-                    }else if($row->type === \App\Models\Action::ACTION_TYPE_WITHDRAW){
-                        $totalWithdraw += $row->amount;
-                    }
-                @endphp
                 <tr>
-                    <td>{{$row->id}}</td>
-                    <td style="background: {{intval($totalDeposit - $totalWithdraw) >= 0 ? "#45D5D4" : "#D8A48F"}}">{{$totalDeposit - $totalWithdraw}}</td>
-                    <td style="">
-                        @if ($row->type === \App\Models\Action::ACTION_TYPE_DEPOSIT)
-                            {{$row->amount}}
-                        @endif
-                    </td>
-                    <td style="">
-                        @if ($row->type === \App\Models\Action::ACTION_TYPE_WITHDRAW)
-                            {{$row->amount}}
-                        @endif
-                    </td>
+                    <td class="center aligned">{{$row->id}}</td>
+                    <td>{{number_format($row->amount)}}</td>
+                    <td>{{$row->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "قبض" : "صرف"}}</td>
                     <td>{{$row->customerName}}</td>
                     <td>{{$row->categoryName}}</td>
-                    <td style="width: 250px;max-width: 250px;">{{$row->details}}</td>
-                    <td>{{$row->date}}</td>
+                    <td class="six wide">{{$row->details}}</td>
+                    <td class="three wide">{{$row->date}}</td>
                 </tr>
             @endforeach
-
-            <tr>
-                <td style="border: none;"></td>
-                <td style="border: none;"></td>
-                <td style="background: #EEE;border: none;">{{$totalDeposit}}</td>
-                <td style="background: #EEE;border: none;">{{$totalWithdraw}}</td>
-                <td style="border: none;"></td>
-                <td style="border: none;"></td>
-                <td style="border: none;"></td>
-                <td style="border: none;"></td>
-            </tr>
             </tbody>
         </table>
-
+    </div>
 
     <script>
         window.print();

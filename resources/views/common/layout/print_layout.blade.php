@@ -17,7 +17,7 @@
     <script src="{{url('/res/app.js')}}"></script>
     <script src="{{url('/res/notifications.js')}}"></script>
 
-    <title>اسم النظام</title>
+    <title>_</title>
 </head>
 <body>
 

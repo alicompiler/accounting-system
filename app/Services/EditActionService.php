@@ -46,6 +46,8 @@ class EditActionService {
             $newBalance = $newBalance + $additionAmount;
 
             $this->action->newBalance = $newBalance;
+            $this->action->id = $prevAction->id;
+            $this->action->exists = true;
             $this->action->save();
             $customer->balance = $newBalance;
             $customer->save();

@@ -1,8 +1,8 @@
-TODO
+
     * STORE PREVIOUS AMOUNT                                     DONE
     * EDIT ACTION                                               DONE
     * DISPLAY PREVIOUS AMOUNT AS FIRST ROW IN REPORTS           LATER
-    * ACTION PRINT REPORT
-    * LINK PRINT BUTTONS
-    * DESIGN PRINT REPORT
-    * SELECT NOW AS DEFAULT DATE FOR DATES FIELDS                DONE
+    * ACTION PRINT REPORT                                       DONE
+    * LINK PRINT BUTTONS                                        DONE
+    * DESIGN PRINT REPORT                                       DONE
+    * SELECT NOW AS DEFAULT DATE FOR DATES FIELDS               DONE

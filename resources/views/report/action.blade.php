@@ -38,9 +38,8 @@
             <thead>
             <tr>
                 <th>رقم العملية</th>
-                <th>المجموع</th>
-                <th>الارادات</th>
-                <th>المصاريف</th>
+                <th>المبلغ</th>
+                <th>النوع</th>
                 <th>المشروع</th>
                 <th>الصنف</th>
                 <th>التفاصيل</th>
@@ -48,36 +47,15 @@
             </tr>
             </thead>
             <tbody>
-            @php
-                $totalDeposit = 0.0;
-                $totalWithdraw = 0.0;
-            @endphp
             @foreach($result ? $result : [] as $row)
-                @php
-                    /** @var array $row */
-                    if ($row->type === \App\Models\Action::ACTION_TYPE_DEPOSIT){
-                        $totalDeposit += $row->amount;
-                    }else if($row->type === \App\Models\Action::ACTION_TYPE_WITHDRAW){
-                        $totalWithdraw += $row->amount;
-                    }
-                @endphp
                 <tr>
                     <td class="center aligned">
-                        <a class="ui blue button" style="width: 80px" href="{{route("actions:single" , ["id" => $row->id])}}">
+                        <a class="ui blue button" href="{{route("actions:single" , ["id" => $row->id])}}">
                             {{$row->id}}
                         </a>
                     </td>
-                    <td style="background: {{intval($totalDeposit - $totalWithdraw) >= 0 ? "#45D5D4" : "#D8A48F"}}">{{number_format($totalDeposit - $totalWithdraw)}}</td>
-                    <td style="">
-                        @if ($row->type === \App\Models\Action::ACTION_TYPE_DEPOSIT)
-                            {{number_format($row->amount)}}
-                        @endif
-                    </td>
-                    <td style="">
-                        @if ($row->type === \App\Models\Action::ACTION_TYPE_WITHDRAW)
-                            {{number_format($row->amount)}}
-                        @endif
-                    </td>
+                    <td>{{number_format($row->amount)}}</td>
+                    <td>{{$row->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "قبض" : "صرف"}}</td>
                     <td>{{$row->customerName}}</td>
                     <td>{{$row->categoryName}}</td>
                     <td class="six wide">{{$row->details}}</td>
@@ -93,21 +71,8 @@
                 <div style="text-align: center;" class="header">لا توجد نتائج</div>
             </div>
         @elseif (count($result) > 0)
-            <div>
-                <div class="ui segment small header">مجموع الدائن :
-                    {{number_format($totalDeposit)}}
-                </div>
-                <div class="ui segment small header">مجموع المدين :
-                    {{number_format($totalWithdraw)}}
-                </div>
-
-                <div class="ui segment small header">{{$totalDeposit - $totalWithdraw >= 0 ? "بذمتنا" : "بذمته"}} :
-                    {{(number_format($totalDeposit - $totalWithdraw))}}
-                </div>
-            </div>
-
             <br/>
-            <a href="{{route("print:action" , [
+            <a target="_blank" href="{{route("print:action" , [
                         "fromDate" => request()->route()->parameter("fromDate") ,
                         "toDate" => request()->route()->parameter("toDate")]
                         )

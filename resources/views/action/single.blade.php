@@ -79,10 +79,10 @@
     <br/><br/>
 
     <div>
-        <button class="ui icon button blue">
+        <a target="_black" href="{{route("print:single-action" , ["id" => $action->id])}}}" class="ui icon button blue">
             <i class="print icon"></i>
             طباعة
-        </button>
+        </a>
         <a class="ui icon button yellow" href="{{route("actions:edit" , ["id" => $action->id])}}">
             <i class="edit icon"></i>
             تعديل
