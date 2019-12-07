@@ -33,7 +33,7 @@ class CustomerRepository {
     }
 
     public function all() {
-        return Customer::orderBy("active", "DESC")->all();
+        return Customer::orderBy("active", "DESC")->get();
     }
 
     public function find(string $query) {

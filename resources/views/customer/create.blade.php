@@ -12,22 +12,22 @@
 
                 <div class="field">
                     <label for="name">الاسم</label>
-                    <input autocomplete="off" id="name" name="name" placeholder="الاسم">
+                    <input required autocomplete="off" id="name" name="name" placeholder="الاسم">
                 </div>
 
                 <div class="field">
                     <label for="phone">الهاتف</label>
-                    <input autocomplete="off" id="phone" name="phone" placeholder="الهاتف">
+                    <input required autocomplete="off" id="phone" name="phone" placeholder="الهاتف">
                 </div>
 
                 <div class="field">
                     <label for="address">العنوان</label>
-                    <input autocomplete="off" id="address" name="address" placeholder="العنوان">
+                    <input required autocomplete="off" id="address" name="address" placeholder="العنوان">
                 </div>
 
                 <div class="field">
                     <label for="">الرصيد الابتدائي</label>
-                    <input autocomplete="off" type="number" id="balance" name="balance" placeholder="الرصيد الابتدائي" value="0">
+                    <input required autocomplete="off" type="number" id="balance" name="balance" placeholder="الرصيد الابتدائي" value="0">
                 </div>
 
 

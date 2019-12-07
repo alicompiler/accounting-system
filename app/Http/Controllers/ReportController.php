@@ -38,4 +38,11 @@ class ReportController extends Controller {
         $result = Customer::where("active", 1)->get();
         return view("report.all_customers", ["result" => $result]);
     }
+
+    public function printActionsReport(Request $request) {
+        $result = $this->actionRepository->reportForActions($request->get("fromDate"),
+            $request->get("toDate"));
+        return view("prints.action_report", ["result" => $result]);
+
+    }
 }

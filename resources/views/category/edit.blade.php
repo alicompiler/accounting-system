@@ -14,7 +14,7 @@
 
                 <div class="field">
                     <label for="name">الاسم</label>
-                    <input autocomplete="off" id="name" name="name" value="{{$category->name}}" placeholder="الاسم">
+                    <input required autocomplete="off" id="name" name="name" value="{{$category->name}}" placeholder="الاسم">
                 </div>
 
 

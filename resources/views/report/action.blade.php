@@ -10,12 +10,12 @@
 
                     <div class="field">
                         <label for="fromDate">من تاريخ</label>
-                        <input id="fromDate" type="date" name="fromDate" value="{{request()->query("fromDate")}}"
+                        <input id="fromDate" type="date" name="fromDate" value="{{request()->query("fromDate" , date('Y-m-d'))}}"
                                placeholder="من تاريخ"/>
                     </div>
                     <div class="field">
                         <label for="toDate">الي تاريخ</label>
-                        <input id="toDate" type="date" name="toDate" value="{{request()->query("toDate")}}"
+                        <input id="toDate" type="date" name="toDate" value="{{request()->query("toDate" , date('Y-m-d'))}}"
                                placeholder="الي تاريخ"/>
                     </div>
                 </div>
@@ -39,8 +39,8 @@
             <tr>
                 <th>رقم العملية</th>
                 <th>المجموع</th>
-                <th>دائن</th>
-                <th>مدين</th>
+                <th>الارادات</th>
+                <th>المصاريف</th>
                 <th>المشروع</th>
                 <th>الصنف</th>
                 <th>التفاصيل</th>
@@ -62,21 +62,25 @@
                     }
                 @endphp
                 <tr>
-                    <td>{{$row->id}}</td>
-                    <td>{{$totalDeposit - $totalWithdraw}}</td>
-                    <td style="background: #0e8c8c;">
+                    <td class="center aligned">
+                        <a class="ui blue button" style="width: 80px" href="{{route("actions:single" , ["id" => $row->id])}}">
+                            {{$row->id}}
+                        </a>
+                    </td>
+                    <td style="background: {{intval($totalDeposit - $totalWithdraw) >= 0 ? "#45D5D4" : "#D8A48F"}}">{{$totalDeposit - $totalWithdraw}}</td>
+                    <td style="">
                         @if ($row->type === \App\Models\Action::ACTION_TYPE_DEPOSIT)
                             {{$row->amount}}
                         @endif
                     </td>
-                    <td style="background: #c82121;">
+                    <td style="">
                         @if ($row->type === \App\Models\Action::ACTION_TYPE_WITHDRAW)
                             {{$row->amount}}
                         @endif
                     </td>
                     <td>{{$row->customerName}}</td>
                     <td>{{$row->categoryName}}</td>
-                    <td>{{$row->details}}</td>
+                    <td class="six wide">{{$row->details}}</td>
                     <td>{{$row->date}}</td>
                 </tr>
             @endforeach

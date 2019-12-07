@@ -31,13 +31,20 @@ class RegisterActionService {
 
     public function register() {
         DB::transaction(function () {
-            $this->action->save();
+            $this->action->prevBalance = $this->customer->balance;
+
+            $newAmount = $this->action->amount;
             if ($this->action->type == Action::ACTION_TYPE_WITHDRAW) {
-                $this->customer->balance -= $this->action->amount;
+                $newAmount = -1 * $this->action->amount;
             }
             else if ($this->action->type == Action::ACTION_TYPE_DEPOSIT) {
-                $this->customer->balance += $this->action->amount;
+                $newAmount = $this->action->amount;
             }
+
+            $newBalance = $this->customer->balance + $newAmount;
+            $this->action->newBalance = $newBalance;
+            $this->action->save();
+            $this->customer->balance = $newBalance;
             $this->customer->save();
         });
     }

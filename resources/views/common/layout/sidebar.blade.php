@@ -4,9 +4,6 @@
         @include('common.layout.menu')
     </div>
 
-    <div id="sidebar" class="ui right sidebar">
-        @include('common.layout.menu')
-    </div>
 
 </div>
 

@@ -7,8 +7,8 @@
             <thead>
             <tr>
                 <th>الزبون</th>
-                <th>دائن</th>
-                <th>مدين</th>
+                <th>الارادات</th>
+                <th>المصاريف</th>
             </tr>
             </thead>
             <tbody>
@@ -16,12 +16,12 @@
             @foreach($result ? $result : [] as $row)
                 <tr>
                     <td>{{$row->name}}</td>
-                    <td style="background: #0e8c8c;">
+                    <td style="background: #45D5D4;">
                         @if ($row->balance >= 0)
                             {{$row->balance}}
                         @endif
                     </td>
-                    <td style="background: #c82121;">
+                    <td style="background: #D8A48F;">
                         @if ($row->balance < 0)
                             {{$row->balance}}
                         @endif

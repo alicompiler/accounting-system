@@ -3,16 +3,30 @@
 
 @section("container")
 
+    <div class="ui header">تعديل العملية</div>
+    <div class="ui divider"></div>
+
+    @if($errors->any())
+        <div class="ui active error message">
+            <div class="header">
+                {{$errors->first()}}
+            </div>
+        </div>
+    @endif
+
     <div class="ui grid">
         <div class="eight wide column">
-            <form class="ui form" action="{{route("actions:create@presist")}}" method="post">
+            <form class="ui form" action="{{route("actions:edit@presist")}}" method="post">
+
+
+                <input title="" value="{{$action->id}}" hidden name="id"/>
 
                 <div class="field">
                     <label for="customer_id">المشروع</label>
-                    <select required name="customer_id" id="customer_id" class="ui search dropdown">
+                    <select disabled required name="customer_id" id="customer_id" class="ui search dropdown">
                         <option value="">المشروع</option>
                         @foreach ($customers as $customer)
-                            <option value="{{$customer->id}}">{{$customer->name}}</option>
+                            <option {{$customer->id == $action->customer_id ? "selected" : ""}} value="{{$customer->id}}">{{$customer->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -20,14 +34,20 @@
                 <div class="field">
                     <label for="type">نوع العملية</label>
                     <select required name="type" id="type" class="ui selection dropdown">
-                        <option value="{{\App\Models\Action::ACTION_TYPE_DEPOSIT}}">قبض</option>
-                        <option value="{{\App\Models\Action::ACTION_TYPE_WITHDRAW}}">صرف</option>
+                        <option {{$action->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "selected" : ""}}
+                                value="{{\App\Models\Action::ACTION_TYPE_DEPOSIT}}">
+                            قبض
+                        </option>
+                        <option {{$action->type == \App\Models\Action::ACTION_TYPE_WITHDRAW ? "selected" : ""}}
+                                value="{{\App\Models\Action::ACTION_TYPE_WITHDRAW}}">
+                            صرف
+                        </option>
                     </select>
                 </div>
 
                 <div class="field">
                     <label for="amount">المبلغ : <span style="margin: 0 16px" id="amountLabel"></span></label>
-                    <input autocomplete="off" type="number" id="amount" name="amount" placeholder="المبلغ">
+                    <input value="{{$action->amount}}" autocomplete="off" type="number" id="amount" name="amount" placeholder="المبلغ">
                     <label id="amountWordsLabel"></label>
                     <script>
                         document.getElementById("amount").onkeyup = function () {
@@ -42,12 +62,12 @@
 
                 <div class="field">
                     <label for="details">التفاصيل</label>
-                    <textarea id="details" name="details" placeholder="التفاصيل"></textarea>
+                    <textarea id="details" name="details" placeholder="التفاصيل">{{$action->details}}</textarea>
                 </div>
 
                 <div class="field">
                     <label for="date">التاريخ</label>
-                    <input autocomplete="off" name="date" value="{{date('Y-m-d')}}" id="date" placeholder="التاريخ" type="date">
+                    <input autocomplete="off" value="{{$action->date}}" name="date" id="date" placeholder="التاريخ" type="date">
                 </div>
 
                 <div class="field">
@@ -55,7 +75,7 @@
                     <select required name="category_id" id="category_id" class="ui search dropdown">
                         <option value="">التصنيف</option>
                         @foreach ($categories as $category)
-                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            <option {{$action->category_id == $category->id ? "selected" : ""}} value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -66,6 +86,8 @@
                     حفظ
                 </button>
                 @CSRF
+                @METHOD("PUT")
+
             </form>
         </div>
         <div class="eight wide column"></div>

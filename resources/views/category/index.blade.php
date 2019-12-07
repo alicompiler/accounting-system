@@ -4,9 +4,9 @@
 @section("container")
     <form class="ui form" method="post" action="{{route("categories")}}">
         @CSRF
-        <div class="ui inline field" style="display: inline-block">
-            <label for="name">الاسم</label>
-            <input name="name" id="name" placeholder="الاسم">
+        <div class="ui labeled input" style="margin-left: 48px;">
+            <label class="ui label" for="name">الاسم</label>
+            <input required name="name" id="name" placeholder="الاسم">
         </div>
         <button class="ui icon button green">
             <i class="save icon"></i>

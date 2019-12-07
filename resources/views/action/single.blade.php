@@ -3,6 +3,25 @@
 
 @section("container")
 
+    <div class="ui form">
+        <div class="ui labeled input">
+            <label class="ui label">رقم العملية</label>
+            <input name="actionId" id="actionId" value="{{request()->route()->parameter("id")}}" type="number" title=""/>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById("actionId");
+        input.onkeyup = function gotoActionPage(e) {
+            console.log(e);
+            if (e.code == "Enter") {
+                const id = document.getElementById("actionId").value;
+                if (parseInt(id) > 0)
+                    window.location.href = "/actions/" + id;
+            }
+        }
+    </script>
+
     <div class="ui large header">
         تقرير عن عملية مالية
     </div>
@@ -64,5 +83,9 @@
             <i class="print icon"></i>
             طباعة
         </button>
+        <a class="ui icon button yellow" href="{{route("actions:edit" , ["id" => $action->id])}}">
+            <i class="edit icon"></i>
+            تعديل
+        </a>
     </div>
 @endsection

@@ -4,20 +4,20 @@
 @section("container")
     <div class="action-bar">
         <div>
-            <a href="{{route("customers:create")}}" class="ui large green icon button">
+            <a href="{{route("customers:create")}}" class="ui blue icon button">
                 <i class="plus icon"></i>
                 اضافة
             </a>
 
-            <a href="{{route("customers:all")}}" class="ui large green icon button">
-                <i class="plus icon"></i>
+            <a href="{{route("customers:all")}}" class="ui blue icon button">
+                <i class="list icon"></i>
                 كل المشاريع
             </a>
         </div>
         <div>
             <form class="ui search form" action={{route("customers")}}>
                 <div class="ui search field">
-                    <input title="بحث" placeholder="بحث..." name="query">
+                    <input required title="بحث" placeholder="بحث..." name="query">
                 </div>
             </form>
         </div>

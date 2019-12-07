@@ -14,22 +14,22 @@
 
                 <div class="field">
                     <label for="name">الاسم</label>
-                    <input autocomplete="off" id="name" name="name" value="{{$customer->name}}" placeholder="الاسم">
+                    <input required autocomplete="off" id="name" name="name" value="{{$customer->name}}" placeholder="الاسم">
                 </div>
 
                 <div class="field">
                     <label for="phone">الهاتف</label>
-                    <input autocomplete="off" id="phone" name="phone" value="{{$customer->phone}}" placeholder="الهاتف">
+                    <input required autocomplete="off" id="phone" name="phone" value="{{$customer->phone}}" placeholder="الهاتف">
                 </div>
 
                 <div class="field">
                     <label for="address">العنوان</label>
-                    <input autocomplete="off" id="address" name="address" value="{{$customer->address}}" placeholder="العنوان">
+                    <input required autocomplete="off" id="address" name="address" value="{{$customer->address}}" placeholder="العنوان">
                 </div>
 
                 <div class="field">
                     <label for="">الرصيد</label>
-                    <input autocomplete="off" type="number" id="balance" name="balance" value="{{$customer->balance}}" placeholder="الرصيد">
+                    <input required autocomplete="off" type="number" id="balance" name="balance" value="{{$customer->balance}}" placeholder="الرصيد">
                 </div>
 
 
