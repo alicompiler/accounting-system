@@ -10,12 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property double amount
  * @property int type
  * @property int id
- * @property float prevBalance
- * @property float newBalance
- * @property int $id
  * @property int $customer_id
- * @property float $amount
- * @property int $type
  * @property string $details
  * @property int $category_id
  * @property string $date

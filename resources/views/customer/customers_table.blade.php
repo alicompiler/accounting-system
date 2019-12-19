@@ -5,7 +5,6 @@
         <th>الاسم</th>
         <th>الهاتف</th>
         <th>العنوان</th>
-        <th>الرصيد</th>
         <th>تاريخ الاضافة</th>
         <th>العمليات</th>
     </tr>
@@ -17,7 +16,6 @@
             <td>{{$customer->name}}</td>
             <td>{{$customer->phone}}</td>
             <td>{{$customer->address}}</td>
-            <td style="text-align:center;background: {{$customer->balance < 0 ? "#D8A48F" : "#45D5D4"}}">{{$customer->balance}}</td>
             <td>{{date('Y-m-d' , strtotime($customer->created_at))}}</td>
             <td>
                 <a href="{{route("customers:edit" , ["id" => $customer->id])}}" class="ui icon yellow button">

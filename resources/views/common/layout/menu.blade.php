@@ -15,7 +15,7 @@
         <div class="items">
 
             <a href="{{route("customers")}}" class="item">المشاريع</a>
-            <a href="{{route("categories")}}" class="item">التصنيفات</a>
+            {{--<a href="{{route("categories")}}" class="item">التصنيفات</a>--}}
             <a href="{{route("actions:create")}}" class="item">تسجيل عملية</a>
             <a href="{{route("report:customer")}}" class="item">تقرير عن مشروع</a>
             <a href="{{route("report:action")}}" class="item">تقرير عن عمليات</a>

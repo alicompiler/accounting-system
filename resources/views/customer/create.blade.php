@@ -25,10 +25,9 @@
                     <input required autocomplete="off" id="address" name="address" placeholder="العنوان">
                 </div>
 
-                <div class="field">
-                    <label for="">الرصيد الابتدائي</label>
-                    <input required autocomplete="off" type="number" id="balance" name="balance" placeholder="الرصيد الابتدائي" value="0">
-                </div>
+                <input hidden required autocomplete="off"
+                       title="" type="number" id="balance" name="balance" placeholder="الرصيد الابتدائي"
+                       value="0">
 
 
                 <button class="ui large green icon button">

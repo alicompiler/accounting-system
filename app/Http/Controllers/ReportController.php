@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Action;
 use App\Models\Customer;
 use App\Repositories\ActionRepository;
+use App\Repositories\CustomerRepository;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller {
@@ -13,9 +14,12 @@ class ReportController extends Controller {
      * @var ActionRepository
      */
     private $actionRepository;
+    private $customerRepository;
 
-    public function __construct(ActionRepository $actionRepository) {
+
+    public function __construct(ActionRepository $actionRepository, CustomerRepository $customerRepository) {
         $this->actionRepository = $actionRepository;
+        $this->customerRepository = $customerRepository;
     }
 
     public function customerReport(Request $request) {
@@ -26,7 +30,7 @@ class ReportController extends Controller {
             $toDate = $request->query("toDate");
             $result = $this->actionRepository->reportForCustomer($customerId, $fromDate, $toDate);
         }
-        $customers = Customer::all();
+        $customers = $this->customerRepository->allActive();
         return view("report.customer", ["customers" => $customers, "result" => $result]);
     }
 

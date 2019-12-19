@@ -41,7 +41,6 @@
                 <th>المبلغ</th>
                 <th>النوع</th>
                 <th>المشروع</th>
-                <th>الصنف</th>
                 <th>التفاصيل</th>
                 <th>التاريخ</th>
             </tr>
@@ -57,7 +56,6 @@
                     <td>{{number_format($row->amount)}}</td>
                     <td>{{$row->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "قبض" : "صرف"}}</td>
                     <td>{{$row->customerName}}</td>
-                    <td>{{$row->categoryName}}</td>
                     <td class="six wide">{{$row->details}}</td>
                     <td>{{$row->date}}</td>
                 </tr>
@@ -71,6 +69,14 @@
                 <div style="text-align: center;" class="header">لا توجد نتائج</div>
             </div>
         @elseif (count($result) > 0)
+            <div>
+                <div class="ui segment small header">الايرادات :
+                    {{number_format($result[count($result)-1]->totalDeposit)}}
+                </div>
+                <div class="ui segment small header">المصروفات :
+                    {{number_format($result[count($result)-1]->totalWithdraw)}}
+                </div>
+            </div>
             <br/>
             <a target="_blank" href="{{route("print:action" , [
                         "fromDate" => request()->route()->parameter("fromDate") ,

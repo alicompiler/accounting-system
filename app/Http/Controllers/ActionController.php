@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Action;
-use App\Models\Category;
 use App\Models\Customer;
 use App\Repositories\CustomerRepository;
 use App\Services\EditActionService;
@@ -20,22 +19,20 @@ class ActionController extends Controller {
 
     public function create() {
         $customers = $this->customerRepository->allActive();
-        $categories = Category::all();
-        return view("action.create", ["categories" => $categories, "customers" => $customers]);
+        return view("action.create", ["customers" => $customers]);
     }
 
     public function edit($id) {
         $action = Action::findOrFail($id);
         $customers = $this->customerRepository->allActive();
-        $categories = Category::all();
 
-        return view("action.edit", ["action" => $action, "categories" => $categories, "customers" => $customers]);
+        return view("action.edit", ["action" => $action, "customers" => $customers]);
     }
 
     public function store(Request $request) {
         $action = new Action($request->all());
         $customer = Customer::findOrFail($request->get("customer_id"));
-        $service = new RegisterActionService($action, $customer);
+        $service = new RegisterActionService($action);
         $service->register();
         return redirect(route("actions:single", ["id" => $action->id]));
     }

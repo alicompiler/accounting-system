@@ -51,47 +51,19 @@
                 <th>الارادات</th>
                 <th>المصاريف</th>
                 <th>النوع</th>
-                <th>الصنف</th>
                 <th>التفاصيل</th>
                 <th>التاريخ</th>
             </tr>
             </thead>
             <tbody>
-            @php
-                $totalDeposit =  0.0;
-                $totalWithdraw = 0.0;
-                $total = $result && count($result) > 0 ? $result[0]->prevBalance : 0.0;
-            @endphp
-            @if($result && count($result) > 0)
-                <tr>
-                    <td></td>
-                    <td>{{$result[0]->prevBalance}}</td>
-                    <td></td>
-                    <td></td>
-                    <td>رصيد سابق</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            @endif
             @foreach($result ? $result : [] as $row)
-                @php
-                    /** @var array $row */
-                    if ($row->type === \App\Models\Action::ACTION_TYPE_DEPOSIT){
-                        $totalDeposit += $row->amount;
-                        $total += $row->amount;
-                    }else if($row->type === \App\Models\Action::ACTION_TYPE_WITHDRAW){
-                        $totalWithdraw += $row->amount;
-                        $total -= $row->amount;
-                    }
-                @endphp
                 <tr>
                     <td class="center aligned">
                         <a class="ui blue button" style="width: 80px" href="{{route("actions:single" , ["id" => $row->id])}}">
                             {{$row->id}}
                         </a>
                     </td>
-                    <td style="background: {{intval($totalDeposit - $totalWithdraw) >= 0 ? "#45D5D4" : "#D8A48F"}}">{{number_format($total)}}</td>
+                    <td style="background: {{$row->total >= 0 ? "#45D5D4" : "#D8A48F"}}">{{number_format($row->total)}}</td>
                     <td style="">
                         @if ($row->type === \App\Models\Action::ACTION_TYPE_DEPOSIT)
                             {{number_format($row->amount)}}
@@ -103,7 +75,6 @@
                         @endif
                     </td>
                     <td>{{$row->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "قبض" : "صرف"}}</td>
-                    <td>{{$row->categoryName}}</td>
                     <td class="six wide">{{$row->details}}</td>
                     <td>{{$row->date}}</td>
                 </tr>
@@ -119,14 +90,14 @@
         @elseif (count($result) > 0)
             <div>
                 <div class="ui segment small header">الايرادات :
-                    {{number_format($totalDeposit)}}
+                    {{number_format($result[count($result)-1]->totalDeposit)}}
                 </div>
                 <div class="ui segment small header">المصروفات :
-                    {{number_format($totalWithdraw)}}
+                    {{number_format($result[count($result)-1]->totalWithdraw)}}
                 </div>
 
-                <div class="ui segment small header">{{$total >= 0 ? "بذمتنا" : "بذمته"}} :
-                    {{(number_format($total))}}
+                <div class="ui segment small header">{{$result[count($result)-1]->total >= 0 ? "بذمتنا" : "بذمته"}} :
+                    {{number_format($result[count($result)-1]->total)}}
                 </div>
             </div>
 

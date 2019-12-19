@@ -9,15 +9,30 @@
 namespace App\Repositories;
 
 
+use App\Models\Action;
 use Illuminate\Support\Facades\DB;
 
 class ActionRepository {
 
     public function reportForCustomer($customerId, $fromDate, $toDate) {
-        $sql = "SELECT action.* , category.name AS categoryName 
-                FROM action JOIN category ON category_id = category.id 
-                WHERE customer_id = ? ";
-        $params = [$customerId];
+        $sql = "SELECT * FROM (
+                        SELECT action.* ,
+                                              CASE WHEN  action.type = ? THEN 
+                                                      @total := @total + action.amount 
+                                                  WHEN action.type = ? THEN 
+                                                      @total := @total - action.amount
+                                                  ELSE 
+                                                      @total 
+                                              END AS total,
+                                              CASE WHEN  action.type = ? THEN @totalDeposit := @totalDeposit + action.amount ELSE @totalDeposit END AS totalDeposit,
+                                              CASE WHEN  action.type = ? THEN @totalWithdraw := @totalWithdraw + action.amount ELSE @totalWithdraw END AS totalWithdraw
+                                        FROM action , (SELECT @total := 0 , @totalDeposit :=0 , @totalWithdraw := 0) T
+                                        WHERE customer_id = ?
+                                        ORDER BY date
+        )T WHERE 1 ";
+
+        $params = [Action::ACTION_TYPE_DEPOSIT, Action::ACTION_TYPE_WITHDRAW, Action::ACTION_TYPE_DEPOSIT, Action::ACTION_TYPE_WITHDRAW,
+            $customerId];
         if ($fromDate) {
             $sql = $sql . " AND date >= ?";
             $params[] = $fromDate;
@@ -27,16 +42,18 @@ class ActionRepository {
             $params[] = $toDate;
         }
 
-        $sql = $sql . " ORDER BY action.date";
+        $sql = $sql . " ORDER BY date";
         return DB::select($sql, $params);
     }
 
     public function reportForActions($fromDate, $toDate) {
-        $sql = "SELECT action.* , category.name AS categoryName , customer.name AS customerName 
-                FROM action JOIN category ON category_id = category.id JOIN customer ON customer.id = customer_id";
+        $sql = "SELECT action.* , customer.name AS customerName ,
+                      CASE WHEN  action.type = ? THEN @totalDeposit := @totalDeposit + action.amount ELSE @totalDeposit END AS totalDeposit,
+                      CASE WHEN  action.type = ? THEN @totalWithdraw := @totalWithdraw + action.amount ELSE @totalWithdraw END AS totalWithdraw
+                FROM action JOIN customer ON customer.id = customer_id CROSS JOIN (SELECT @totalWithdraw := 0 , @totalDeposit := 0)T";
 
         $conditions = ($fromDate ? 1 : 0) + ($toDate ? 1 : 0);
-        $params = [];
+        $params = [Action::ACTION_TYPE_DEPOSIT, Action::ACTION_TYPE_WITHDRAW];
         if ($conditions > 0) {
             $sql = $sql . " WHERE";
         }

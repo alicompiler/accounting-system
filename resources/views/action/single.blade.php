@@ -66,11 +66,6 @@
         </div>
 
         <div class="item-info">
-            <span class="key-span">التصنيف</span>
-            <span>{{$action->category->name}}</span>
-        </div>
-
-        <div class="item-info">
             <span class="key-span">التفاصيل</span>
             <span>{!! nl2br(htmlentities($action->details)) !!}</span>
         </div>

@@ -50,15 +50,15 @@
                     <input autocomplete="off" name="date" value="{{date('Y-m-d')}}" id="date" placeholder="التاريخ" type="date">
                 </div>
 
-                <div class="field">
-                    <label for="category_id">التصنيف</label>
-                    <select required name="category_id" id="category_id" class="ui search dropdown">
-                        <option value="">التصنيف</option>
-                        @foreach ($categories as $category)
-                            <option value="{{$category->id}}">{{$category->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
+                {{--<div class="field">--}}
+                {{--<label for="category_id">التصنيف</label>--}}
+                {{--<select required name="category_id" id="category_id" class="ui search dropdown">--}}
+                {{--<option value="">التصنيف</option>--}}
+                {{--@foreach ($categories as $category)--}}
+                {{--<option value="{{$category->id}}">{{$category->name}}</option>--}}
+                {{--@endforeach--}}
+                {{--</select>--}}
+                {{--</div>--}}
 
 
                 <button class="ui icon large green button">

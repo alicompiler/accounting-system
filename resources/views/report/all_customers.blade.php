@@ -12,23 +12,34 @@
             </tr>
             </thead>
             <tbody>
-            @php($total = 0.0)
+            @php
+                $total = 0.0;$forMe = 0;$onMe = 0;
+            @endphp
+
             @foreach($result ? $result : [] as $row)
+
+                @php
+                    $balance = $row->balance();
+                    $total = $total + $balance;
+                    if ($balance > 0) $onMe += $balance;
+                    if ($balance < 0) $forMe += $balance;
+                @endphp
+
                 <tr>
                     <td>{{$row->name}}</td>
                     <td style="background: #45D5D4;">
-                        @if ($row->balance >= 0)
-                            {{$row->balance}}
+                        @if ($balance >= 0)
+                            {{number_format($balance)}}
                         @endif
                     </td>
                     <td style="background: #D8A48F;">
-                        @if ($row->balance < 0)
-                            {{$row->balance}}
+                        @if ($balance < 0)
+                            {{number_format($balance)}}
                         @endif
                     </td>
                 </tr>
-                @php($total = $total + $row->balance)
             @endforeach
+
             </tbody>
         </table>
 
@@ -39,8 +50,15 @@
             </div>
         @elseif (count($result) > 0)
             <div>
+                <div class="ui segment small header">الدائن :
+                    {{(number_format($onMe))}}
+                </div>
+                <div class="ui segment small header">المدين :
+                    {{(number_format($forMe))}}
+                </div>
+
                 <div class="ui segment small header">المجموع الكلي :
-                    {{($total)}}
+                    {{(number_format($total))}}
                 </div>
             </div>
         @endif

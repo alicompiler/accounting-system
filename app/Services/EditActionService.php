@@ -33,35 +33,12 @@ class EditActionService {
      */
     public function update() {
         DB::transaction(function () {
-
             $prevAction = Action::findOrFail($this->prevActionId);
-            $customer = Customer::findOrFail($prevAction->customer_id);
-
-            $this->action->prevBalance = $prevAction->prevBalance;
-            $this->action->customer_id = $customer->id;
-
-            $deductionAmount = $this->getAmountSign($prevAction->type, $prevAction->amount);
-            $newBalance = $customer->balance - $deductionAmount;
-            $additionAmount = $this->getAmountSign($this->action->type, $this->action->amount);
-            $newBalance = $newBalance + $additionAmount;
-
-            $this->action->newBalance = $newBalance;
+            $this->action->customer_id = $prevAction->customer_id;
             $this->action->id = $prevAction->id;
             $this->action->exists = true;
             $this->action->save();
-            $customer->balance = $newBalance;
-            $customer->save();
         });
-    }
-
-    public function getAmountSign($type, $amount) {
-        if ($type == Action::ACTION_TYPE_WITHDRAW) {
-            return -1 * $amount;
-        }
-        else if ($type == Action::ACTION_TYPE_DEPOSIT) {
-            return $amount;
-        }
-        return $amount;
     }
 
 }
