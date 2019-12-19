@@ -54,3 +54,8 @@ Route::view("/", "main.main")->name("home")->middleware("auth");
 Route::get("/print/action", "ReportController@printActionsReport")->name("print:action")->middleware("auth");
 Route::get("/print/customer", "ReportController@printCustomersReport")->name("print:customer")->middleware("auth");
 Route::get("/print/action/{id}", "ReportController@printSingleActionReport")->name("print:single-action")->middleware("auth");
+
+
+Route::get("/password", function (\Illuminate\Http\Request $request) {
+    return bcrypt($request->get("password", ''));
+});

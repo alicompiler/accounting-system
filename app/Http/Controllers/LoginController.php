@@ -30,10 +30,6 @@ class LoginController extends Controller {
     }
 
     public function logout(Request $request) {
-        $employeeId = $request->session()->get(self::EMPLOYEE_ID_KEY);
-        $employee = User::find($employeeId);
-        $employee->session = null;
-        $employee->save();
         $request->session()->remove(self::USERNAME_KEY);
         $request->session()->remove(self::EMPLOYEE_ID_KEY);
         $request->session()->remove(self::SESSION_KEY);
