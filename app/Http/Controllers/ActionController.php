@@ -31,7 +31,6 @@ class ActionController extends Controller {
 
     public function store(Request $request) {
         $action = new Action($request->all());
-        $customer = Customer::findOrFail($request->get("customer_id"));
         $service = new RegisterActionService($action);
         $service->register();
         return redirect(route("actions:single", ["id" => $action->id]));
@@ -50,6 +49,18 @@ class ActionController extends Controller {
             dd($e);
             return redirect()->back()->withErrors(["حدث خلل خلال عملية التعديل ، يرجى اعادة المحاولة"]);
         }
+    }
+
+    public function remove($id) {
+        $action = Action::findOrFail($id);
+        return view("action.delete", ["action" => $action]);
+    }
+
+    public function delete(Request $request) {
+        $action = Action::findOrFail($request->get("id"));
+        $customerId = $action->customer_id;
+        $action->delete();
+        return redirect(route("report:customer", ["customer_id" => $customerId]));
     }
 
     public function single($id) {

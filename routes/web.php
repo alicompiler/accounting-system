@@ -35,8 +35,10 @@ Route::put("/categories", "CategoryController@update")->middleware("auth");
 Route::get("/actions/{id}", "ActionController@single")->where("id", "[0-9]+")->name("actions:single")->middleware("auth");
 Route::get("/actions/create", "ActionController@create")->name("actions:create")->middleware("auth");
 Route::get("/actions/{id}/edit", "ActionController@edit")->name("actions:edit")->middleware("auth");
+Route::get("/actions/{id}/delete", "ActionController@remove")->name("actions:delete")->middleware("auth");
 Route::post("/actions", "ActionController@store")->name("actions:create@presist")->middleware("auth");
 Route::put("/actions", "ActionController@update")->name("actions:edit@presist")->middleware("auth");
+Route::delete("/actions", "ActionController@delete")->name("actions:delete@presist")->middleware("auth");
 
 
 Route::get("/report/customer", "ReportController@customerReport")->name("report:customer")->middleware("auth");
