@@ -48,16 +48,12 @@
             <tbody>
             @foreach($result ? $result : [] as $row)
                 <tr>
-                    <td class="center aligned">
-                        <a class="ui blue button" href="{{route("actions:single" , ["id" => $row->id])}}">
-                            {{$row->id}}
-                        </a>
-                    </td>
+                    <td class="center aligned">{{$row->id}}</td>
                     <td>{{number_format($row->amount)}}</td>
                     <td>{{$row->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "قبض" : "صرف"}}</td>
                     <td>{{$row->customerName}}</td>
                     <td class="six wide">{{$row->details}}</td>
-                    <td>{{$row->date}}</td>
+                    <td class="three wide">{{$row->date}}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -79,8 +75,8 @@
             </div>
             <br/>
             <a target="_blank" href="{{route("print:action" , [
-                        "fromDate" => request()->route()->parameter("fromDate") ,
-                        "toDate" => request()->route()->parameter("toDate")]
+                        "fromDate" => request()->query("fromDate") ,
+                        "toDate" => request()->query("toDate")]
                         )
                      }}"
                class="ui blue button">طباعة</a>

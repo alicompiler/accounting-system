@@ -19,7 +19,7 @@ class LoginController extends Controller {
             $submittedPassword = $request->get('password');
             $submittedPasswordHash = bcrypt($submittedPassword);
             $employeePassword = $employee->password;
-            if (strcmp($submittedPasswordHash, $employeePassword)) {
+            if (strcmp($submittedPasswordHash, $employeePassword) == 0) {
                 $request->session()->put(self::USERNAME_KEY, $employee->username);
                 $request->session()->put(self::EMPLOYEE_ID_KEY, $employee->id);
                 return redirect(route('home'));
