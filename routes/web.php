@@ -59,5 +59,5 @@ Route::get("/print/action/{id}", "ReportController@printSingleActionReport")->na
 
 
 Route::get("/password", function (\Illuminate\Http\Request $request) {
-    return bcrypt($request->get("password", ''));
+    return Hash::make($request->get("password", ''));
 });

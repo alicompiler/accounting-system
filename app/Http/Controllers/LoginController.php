@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Hash;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller {
@@ -17,9 +18,8 @@ class LoginController extends Controller {
 
         if ($employee) {
             $submittedPassword = $request->get('password');
-            $submittedPasswordHash = bcrypt($submittedPassword);
-            $employeePassword = $employee->password;
-            if (strcmp($submittedPasswordHash, $employeePassword) == 0) {
+            $isPasswordMatch = Hash::check($submittedPassword, $employee->password);
+            if ($isPasswordMatch) {
                 $request->session()->put(self::USERNAME_KEY, $employee->username);
                 $request->session()->put(self::EMPLOYEE_ID_KEY, $employee->id);
                 return redirect(route('home'));
