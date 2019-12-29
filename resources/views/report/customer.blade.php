@@ -48,7 +48,7 @@
             <tr>
                 <th>رقم العملية</th>
                 <th>المجموع</th>
-                <th>الارادات</th>
+                <th>الايرادات</th>
                 <th>المصاريف</th>
                 <th>النوع</th>
                 <th>التفاصيل</th>
@@ -97,7 +97,7 @@
                 </div>
 
                 <div class="ui segment small header">{{$result[count($result)-1]->total >= 0 ? "بذمتنا" : "بذمته"}} :
-                    {{number_format($result[count($result)-1]->total)}}
+                    {{number_format(abs($result[count($result)-1]->total))}}
                 </div>
             </div>
 

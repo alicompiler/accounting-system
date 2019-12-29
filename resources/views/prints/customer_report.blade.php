@@ -30,7 +30,7 @@
             <tr>
                 <th>رقم العملية</th>
                 <th>المجموع</th>
-                <th>الارادات</th>
+                <th>الايرادات</th>
                 <th>المصاريف</th>
                 <th>النوع</th>
                 <th>التفاصيل</th>
@@ -54,7 +54,7 @@
                     </td>
                     <td>{{$row->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "قبض" : "صرف"}}</td>
                     <td class="six wide">{{$row->details}}</td>
-                    <td>{{$row->date}}</td>
+                    <td class="three wide">{{$row->date}}</td>
                 </tr>
             @endforeach
             @if($result && count($result) > 0)

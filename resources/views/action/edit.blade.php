@@ -47,7 +47,7 @@
 
                 <div class="field">
                     <label for="amount">المبلغ : <span style="margin: 0 16px" id="amountLabel"></span></label>
-                    <input value="{{$action->amount}}" autocomplete="off" type="number" id="amount" name="amount" placeholder="المبلغ">
+                    <input required value="{{$action->amount}}" autocomplete="off" type="number" id="amount" name="amount" placeholder="المبلغ">
                     <label id="amountWordsLabel"></label>
                     <script>
                         document.getElementById("amount").onkeyup = function () {
@@ -62,12 +62,12 @@
 
                 <div class="field">
                     <label for="details">التفاصيل</label>
-                    <textarea id="details" name="details" placeholder="التفاصيل">{{$action->details}}</textarea>
+                    <textarea required id="details" name="details" placeholder="التفاصيل">{{$action->details}}</textarea>
                 </div>
 
                 <div class="field">
                     <label for="date">التاريخ</label>
-                    <input autocomplete="off" value="{{$action->date}}" name="date" id="date" placeholder="التاريخ" type="date">
+                    <input required autocomplete="off" value="{{$action->date}}" name="date" id="date" placeholder="التاريخ" type="date">
                 </div>
 
                 {{--<div class="field">--}}
