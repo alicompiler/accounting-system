@@ -134,7 +134,7 @@ NumberToWords.prototype.addSuffixPrefix = function (arr, column) {
     } else {
         var joinedNumber = parseInt(arr.join(""));
         if (joinedNumber > 1) {
-            return this.read(joinedNumber) + " " + this[this.columns[column]].singular;
+            return this.read(joinedNumber) + " " + this[this.columns[column]].singular + " ";
         } else {
             return this[this.columns[column]].singular;
         }
@@ -187,7 +187,7 @@ NumberToWords.prototype.readHundreds = function (d) {
 
     if (Array.from(d.toString())[1] !== "0") {
         str +=
-            " و" +
+            " و " +
             this.readTens(
                 (Array.from(d.toString())[1] + Array.from(d.toString())[2]).toString()
             );
@@ -282,3 +282,17 @@ NumberToWords.prototype.trilions = {
 };
 NumberToWords.prototype.columns = ["trilions", "bilions", "milions", "thousands"];
 
+//
+// console.log(new NumberToWords(13).parse());
+// console.log(new NumberToWords(43).parse());
+// console.log(new NumberToWords(163).parse());
+// console.log(new NumberToWords(1390).parse());
+// console.log(new NumberToWords(23875).parse());
+// console.log(new NumberToWords(21364).parse());
+// console.log(new NumberToWords(8676513).parse());
+// console.log(new NumberToWords(13090987).parse());
+// console.log(new NumberToWords(23325000).parse());
+// console.log(new NumberToWords(28627000).parse());
+// console.log(new NumberToWords(77627000).parse());
+// console.log(new NumberToWords(100765423).parse());
+// console.log(new NumberToWords(1976421170).parse());

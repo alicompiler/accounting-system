@@ -2,11 +2,33 @@
 
 @section("container")
 
+    <style>
+
+        .ui.celled.table tr th, .ui.celled.table tr td {
+            border: 1px solid #000 !important;
+        }
+
+        .ui.labeled.small.input {
+            border: #111 solid 1px;
+        }
+
+        .ui.labeled.small.input label {
+            background: none;
+        }
+
+
+    </style>
+
 
     <div class="ui fluid container">
 
         <div style="display: flex;justify-content: space-between;align-items: flex-start">
-            <div class="ui header" style="margin: 0;">شركة نهر الكوفة</div>
+            <div>
+                <div class="ui header" style="margin: 0;">شركة نهر الكوفة</div>
+                <div class="ui header">
+                    اسم المشروع : {{$customer->name}}
+                </div>
+            </div>
             <div class="ui header" style="margin: 0;">كشف حساب مشروع</div>
             <div style="display: flex;align-items: center;flex-direction: column;">
                 <div class="ui labeled small input" style="display: flex;align-items: center;">
@@ -21,9 +43,6 @@
             </div>
         </div>
 
-        <div class="ui header">
-            اسم المشروع : {{$customer->name}}
-        </div>
 
         <table class="ui right aligned celled striped table">
             <thead>
@@ -78,6 +97,10 @@
                 <span id="totalAsText" style="padding: 0 40px" data-value="{{abs($result[count($result)-1]->total)}}"></span>
             </div>
         @endif
+
+        <div class="ui medium left aligned header">
+            شركة نهر الكوفة للمقاولات العامة المحدودة
+        </div>
 
         <script>
             const totalAsTextElement = document.getElementById("totalAsText");
