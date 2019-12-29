@@ -3,6 +3,18 @@
 @section("container")
     <style>
 
+        .ui.celled.table tr th, .ui.celled.table tr td {
+            border: 1px solid #000 !important;
+        }
+
+        .ui.labeled.small.input {
+            border: #111 solid 1px;
+        }
+
+        .ui.labeled.small.input label {
+            background: none;
+        }
+
 
     </style>
 
@@ -25,7 +37,7 @@
             </div>
         </div>
 
-        <table class="ui right aligned celled striped table">
+        <table class="ui right aligned celled striped small table">
             <thead>
             <tr>
                 <th>رقم العملية</th>
@@ -52,10 +64,10 @@
 
         @if ($result && count($result) > 0)
             <div>
-                <div class="ui segment small header">الايرادات :
+                <div class="ui small header">الايرادات :
                     {{number_format($result[count($result)-1]->totalDeposit)}}
                 </div>
-                <div class="ui segment small header">المصروفات :
+                <div class="ui small header">المصروفات :
                     {{number_format($result[count($result)-1]->totalWithdraw)}}
                 </div>
             </div>
