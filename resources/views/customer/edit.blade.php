@@ -29,7 +29,7 @@
 
                 <div class="field">
                     <label for="">الرصيد</label>
-                    <input required autocomplete="off" type="number" id="balance" name="balance" value="{{$customer->balance}}" placeholder="الرصيد">
+                    <input required autocomplete="off" type="number" id="balance" name="balance" value="{{$customer->balance()}}" placeholder="الرصيد">
                 </div>
 
 

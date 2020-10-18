@@ -20,15 +20,15 @@
                 <div class="field">
                     <label for="type">نوع العملية</label>
                     <select required name="type" id="type" class="ui selection dropdown">
-                        <option value="{{\App\Models\Action::ACTION_TYPE_DEPOSIT}}">قبض</option>
                         <option value="{{\App\Models\Action::ACTION_TYPE_WITHDRAW}}">صرف</option>
+                        <option value="{{\App\Models\Action::ACTION_TYPE_DEPOSIT}}">قبض</option>
                     </select>
                 </div>
 
                 <div class="field">
                     <label for="amount">المبلغ : <span style="margin: 0 16px" id="amountLabel"></span></label>
                     <input required autocomplete="off" type="number" id="amount" name="amount" placeholder="المبلغ">
-                    <label id="amountWordsLabel"></label>
+                    <label style="display : none;" id="amountWordsLabel"></label>
                     <script>
                         document.getElementById("amount").onkeyup = function () {
                             let amount = document.getElementById('amount').value;

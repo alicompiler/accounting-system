@@ -24,21 +24,30 @@
 
         <div style="display: flex;justify-content: space-between;align-items: flex-start">
             <div>
-                <div class="ui header" style="margin: 0;">شركة نهر الكوفة</div>
-                <div class="ui header">
-                    اسم المشروع : {{$customer->name}}
+                <div class="ui center aligned header" style="">شركة افاق السنا</div>
+                <div class="ui center aligned header" style="">للمقاولات العامة المحدودة</div>
+            </div>
+
+            <div style="display: flex;align-items: center;flex-direction: column;justify-content: center;">
+                <div class="ui header" style="margin: 0;">كشف حساب : {{$customer->name}}</div>
+                <div style="display: flex;align-items: center;justify-content: center;margin-top: 16px">
+                    <div class="ui labeled small input" style="display: flex;align-items: center;">
+                        <label class="ui label">من تاريخ</label>
+                        <input style="width : 100px;" value="{{request()->query("fromDate" , "-")}}" title="" disabled/>
+                    </div>
+                    <br/>
+                    <div class="ui labeled small input" style="display: flex;align-items: center;">
+                        <label class="ui label">الى تاريخ</label>
+                        <input style="width: 100px;" value="{{request()->query("toDate" , "-")}}" title="" disabled/>
+                    </div>
                 </div>
             </div>
-            <div class="ui header" style="margin: 0;">كشف حساب مشروع</div>
+
             <div style="display: flex;align-items: center;flex-direction: column;">
-                <div class="ui labeled small input" style="display: flex;align-items: center;">
-                    <label class="ui label">من تاريخ</label>
-                    <input style="width : 128px;" value="{{request()->query("fromDate" , "-")}}" title="" disabled/>
-                </div>
-                <br/>
-                <div class="ui labeled small input" style="display: flex;align-items: center;">
-                    <label class="ui label">الى تاريخ</label>
-                    <input style="width: 128px;" value="{{request()->query("toDate" , "-")}}" title="" disabled/>
+                <img alt="logo" src="/res/logo.png" style="width : 100px;margin-bottom: 16px"/>
+                <div>
+                    <p style="margin: 0;direction: ltr" class="">0780 52 52 52 1</p>
+                    <p style="margin: 0;direction: ltr" class="">0780 52 52 52 7</p>
                 </div>
             </div>
         </div>
@@ -94,13 +103,10 @@
         @if($result && count($result) > 0)
             <div style="" class="ui header">{{$result[count($result)-1]->total >= 0 ? "بذمتنا" : "بذمته"}} :
                 {{number_format(abs($result[count($result)-1]->total))}}
-                <span id="totalAsText" style="padding: 0 40px" data-value="{{abs($result[count($result)-1]->total)}}"></span>
+                <span id="totalAsText" style="padding: 0 40px;display : none;"
+                      data-value="{{abs($result[count($result)-1]->total)}}"></span>
             </div>
         @endif
-
-        <div class="ui medium left aligned header">
-            شركة نهر الكوفة للمقاولات العامة المحدودة
-        </div>
 
         <script>
             const totalAsTextElement = document.getElementById("totalAsText");
