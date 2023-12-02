@@ -51,4 +51,8 @@ class Action extends Model {
     public function category() {
         return $this->hasOne("App\Models\Category", "id", "category_id");
     }
+
+    public function files() {
+        return $this->hasMany("App\Models\ActionFile", "action_id", "id");
+    }
 }

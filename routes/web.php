@@ -39,6 +39,8 @@ Route::get("/actions/{id}/delete", "ActionController@remove")->name("actions:del
 Route::post("/actions", "ActionController@store")->name("actions:create@presist")->middleware("auth");
 Route::put("/actions", "ActionController@update")->name("actions:edit@presist")->middleware("auth");
 Route::delete("/actions", "ActionController@delete")->name("actions:delete@presist")->middleware("auth");
+Route::get("/actions/image/{filename}", "ActionController@displayImage")->name("actions:image")->middleware("auth");
+Route::get("/actions/file/{filename}", "ActionController@downloadFile")->name("actions:file")->middleware("auth");
 
 
 Route::get("/report/customer", "ReportController@customerReport")->name("report:customer")->middleware("auth");

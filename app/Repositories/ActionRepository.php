@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\DB;
 
 class ActionRepository {
 
-    public function reportForCustomer($customerId, $fromDate, $toDate) {
-        $sql = "SELECT * FROM (
+    public function reportForCustomer($customerId, $fromDate, $toDate, $categoryId) {
+        $sql = "SELECT T.*, category.name AS categoryName, (SELECT COUNT(*) FROM action_file WHERE action_id = T.id) AS filesCount FROM (
                         SELECT action.* ,
                                               CASE WHEN  action.type = ? THEN 
                                                       @total := @total + action.amount 
@@ -26,10 +26,10 @@ class ActionRepository {
                                               END AS total,
                                               CASE WHEN  action.type = ? THEN @totalDeposit := @totalDeposit + action.amount ELSE @totalDeposit END AS totalDeposit,
                                               CASE WHEN  action.type = ? THEN @totalWithdraw := @totalWithdraw + action.amount ELSE @totalWithdraw END AS totalWithdraw
-                                        FROM action , (SELECT @total := 0 , @totalDeposit :=0 , @totalWithdraw := 0) T
+                                        FROM action , (SELECT @total := 0 , @totalDeposit :=0 , @totalWithdraw := 0) T 
                                         WHERE customer_id = ?
-                                        ORDER BY date
-        )T WHERE 1 ";
+                                        ORDER BY created_at
+        )T LEFT JOIN category ON T.category_id = category.id WHERE 1 ";
 
         $params = [Action::ACTION_TYPE_DEPOSIT, Action::ACTION_TYPE_WITHDRAW, Action::ACTION_TYPE_DEPOSIT, Action::ACTION_TYPE_WITHDRAW,
             $customerId];
@@ -42,7 +42,12 @@ class ActionRepository {
             $params[] = $toDate;
         }
 
-        $sql = $sql . " ORDER BY date";
+        if ($categoryId && $categoryId != 0) {
+            $sql = $sql . " AND category_id = ?";
+            $params[] = $categoryId;
+        }
+
+        $sql = $sql . " ORDER BY created_at";
         return DB::select($sql, $params);
     }
 

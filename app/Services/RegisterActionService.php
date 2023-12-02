@@ -10,8 +10,10 @@ namespace App\Services;
 
 
 use App\Models\Action;
+use App\Models\ActionFile;
 use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
+use Str;
 
 class RegisterActionService {
 
@@ -29,12 +31,20 @@ class RegisterActionService {
     /**
      * @throws \Throwable
      */
-    public function register() {
-        DB::transaction(function () {
-            $this->action->category_id = -1;
+    public function register($files = []) {
+        DB::transaction(function () use ($files){
             $this->action->save();
+            foreach ($files as $file) {
+                $uniqueName = Str::uuid()->toString();
+                $file->storeAs('uploads', $uniqueName.'.'.$file->getClientOriginalExtension());    
+                $isImage = $file->getClientOriginalExtension() == 'jpg' || $file->getClientOriginalExtension() == 'png' || $file->getClientOriginalExtension() == 'jpeg';
+                ActionFile::create([
+                    'action_id' => $this->action->id,
+                    'filename' => $uniqueName.'.'.$file->getClientOriginalExtension(),
+                    'is_image' => $isImage
+                ]);
+            }
         });
     }
-
 
 }

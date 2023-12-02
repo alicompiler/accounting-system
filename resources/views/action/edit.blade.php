@@ -32,6 +32,15 @@
                 </div>
 
                 <div class="field">
+                    <label for="category_id">صنف العملية</label>
+                    <select name="category_id" id="category_id" class="ui search dropdown">
+                        @foreach ($categories as $category)
+                            <option {{$category->id == $action->category_id ? "selected" : ""}} value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="field">
                     <label for="type">نوع العملية</label>
                     <select required name="type" id="type" class="ui selection dropdown">
                         <option {{$action->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "selected" : ""}}

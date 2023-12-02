@@ -41,6 +41,11 @@
                         <input style="width: 100px;" value="{{request()->query("toDate" , "-")}}" title="" disabled/>
                     </div>
                 </div>
+                @if($category)
+                    <p style="margin: 0;direction: ltr" class="">
+                        صنف العملية : {{$category->name}}
+                    </p>
+                @endif
             </div>
 
             <div style="display: flex;align-items: center;flex-direction: column;">

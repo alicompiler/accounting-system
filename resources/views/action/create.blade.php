@@ -5,7 +5,7 @@
 
     <div class="ui grid">
         <div class="eight wide column">
-            <form class="ui form" action="{{route("actions:create@presist")}}" method="post">
+            <form class="ui form" action="{{route("actions:create@presist")}}" method="post" enctype="multipart/form-data">
 
                 <div class="field">
                     <label for="customer_id">المشروع</label>
@@ -13,6 +13,15 @@
                         <option value="">المشروع</option>
                         @foreach ($customers as $customer)
                             <option value="{{$customer->id}}">{{$customer->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="category_id">صنف العملية</label>
+                    <select name="category_id" id="category_id" class="ui search dropdown">
+                        @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -48,6 +57,11 @@
                 <div class="field">
                     <label for="date">التاريخ</label>
                     <input required autocomplete="off" name="date" value="{{date('Y-m-d')}}" id="date" placeholder="التاريخ" type="date">
+                </div>
+
+                <div class="field">
+                    <label for="files">المرفقات</label>
+                    <input autocomplete="off" multiple name="files[]" id="files" placeholder="المرفقات" type="file">
                 </div>
 
                 {{--<div class="field">--}}

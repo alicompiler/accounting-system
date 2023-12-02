@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Action;
+use App\Models\Category;
 use App\Models\Customer;
 use App\Repositories\ActionRepository;
 use App\Repositories\CustomerRepository;
@@ -28,10 +29,12 @@ class ReportController extends Controller {
         if ($customerId) {
             $fromDate = $request->query("fromDate");
             $toDate = $request->query("toDate");
-            $result = $this->actionRepository->reportForCustomer($customerId, $fromDate, $toDate);
+            $categoryId = $request->query("category_id");
+            $result = $this->actionRepository->reportForCustomer($customerId, $fromDate, $toDate, $categoryId);
         }
         $customers = $this->customerRepository->allActive();
-        return view("report.customer", ["customers" => $customers, "result" => $result]);
+        $categories = Category::where('active', true)->get();
+        return view("report.customer", ["customers" => $customers, "categories" => $categories, "result" => $result]);
     }
 
     public function actionReport(Request $request) {
@@ -53,9 +56,10 @@ class ReportController extends Controller {
 
     public function printCustomersReport(Request $request) {
         $result = $this->actionRepository->reportForCustomer($request->get("customer_id"), $request->get("fromDate"),
-            $request->get("toDate"));
+            $request->get("toDate"), $request->get("category_id"));
         $customer = Customer::findOrFail($request->get("customer_id"));
-        return view("prints.customer_report", ["result" => $result, "customer" => $customer]);
+        $category = Category::find($request->get("category_id"));
+        return view("prints.customer_report", ["result" => $result, "customer" => $customer, "category" => $category]);
     }
 
     public function printSingleActionReport($id) {

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Action;
+use App\Models\Category;
 use App\Models\Customer;
 use App\Repositories\CustomerRepository;
 use App\Services\EditActionService;
 use App\Services\RegisterActionService;
+use File;
 use Illuminate\Http\Request;
 
 class ActionController extends Controller {
@@ -19,20 +21,23 @@ class ActionController extends Controller {
 
     public function create() {
         $customers = $this->customerRepository->allActive();
-        return view("action.create", ["customers" => $customers]);
+        $categories = Category::where('active', true)->get();
+        return view("action.create", ["customers" => $customers, "categories" => $categories]);
     }
 
     public function edit($id) {
         $action = Action::findOrFail($id);
         $customers = $this->customerRepository->allActive();
+        $categories = Category::where('active', true)->get();
 
-        return view("action.edit", ["action" => $action, "customers" => $customers]);
+        return view("action.edit", ["action" => $action, "customers" => $customers, "categories" => $categories]);
     }
 
     public function store(Request $request) {
         $action = new Action($request->all());
+        $files = $request->file("files");
         $service = new RegisterActionService($action);
-        $service->register();
+        $service->register($files);
         return redirect(route("actions:single", ["id" => $action->id]));
     }
 
@@ -66,5 +71,20 @@ class ActionController extends Controller {
     public function single($id) {
         $action = Action::findOrFail($id);
         return view("action.single", ["action" => $action]);
+    }
+
+    public function displayImage($filename) {
+        $path = storage_path('app/uploads/' . $filename);
+        if(!File::exists($path)) abort(404);
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = response($file, 200)->header("Content-Type", $type);
+        return $response;
+    }
+
+    public function downloadFile($filename) {
+        $path = storage_path('app/uploads/' . $filename);
+        if(!File::exists($path)) abort(404);
+        return response()->download($path);
     }
 }

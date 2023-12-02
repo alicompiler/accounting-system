@@ -27,6 +27,17 @@
                         <input id="toDate" type="date" name="toDate" value="{{request()->query("toDate",date('Y-m-d'))}}"
                                placeholder="الي تاريخ"/>
                     </div>
+
+                    <div class="field">
+                        <label for="category_id">صنف العملية</label>
+                        <select required name="category_id" id="category_id" class="ui search dropdown">
+                            <option {{request()->query("category_id") == 0 ? "selected": ""}} value="0">الكل</option>
+                            @foreach ($categories as $category)
+                                <option {{request()->query("category_id") == $category->id ? "selected": ""}} value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                            <option {{request()->query("category_id") == -1 ? "selected": ""}} value="-1">قبل التحديث</option>
+                        </select>
+                    </div>
                 </div>
 
 
@@ -52,6 +63,7 @@
                 <th>المصاريف</th>
                 <th>النوع</th>
                 <th>التفاصيل</th>
+                <th>صنف العملية</th>
                 <th>التاريخ</th>
             </tr>
             </thead>
@@ -62,6 +74,9 @@
                         <a class="ui blue button" style="width: 80px" href="{{route("actions:single" , ["id" => $row->id])}}">
                             {{$row->id}}
                         </a>
+                        @if($row->filesCount && $row->filesCount > 0)
+                            <p>توجد مرفقات</p>
+                        @endif
                     </td>
                     <td style="background: {{$row->total >= 0 ? "#45D5D4" : "#D8A48F"}}">{{number_format($row->total)}}</td>
                     <td style="">
@@ -76,6 +91,7 @@
                     </td>
                     <td>{{$row->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "قبض" : "صرف"}}</td>
                     <td class="six wide">{{$row->details}}</td>
+                    <td>{{$row->categoryName}}</td>
                     <td>{{$row->date}}</td>
                 </tr>
             @endforeach
@@ -104,7 +120,8 @@
             <br/>
             <a href="{{route("print:customer" , ["fromDate" => request()->query("fromDate") ,
                 "toDate" => request()->query("toDate"),
-                "customer_id" => request()->query("customer_id")
+                "customer_id" => request()->query("customer_id"),
+                "category_id" => request()->query("category_id"),
             ])}}"
                target="_blank" class="ui blue button">طباعة</a>
         @endif
