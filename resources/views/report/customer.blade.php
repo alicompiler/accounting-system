@@ -7,7 +7,7 @@
             <div style="display: inline-flex;align-items: flex-end;">
 
                 <div class="fields" style="display: inline-flex;margin: 0;">
-                    <div class="field">
+                    <div class="full-width-mobile field">
                         <label for="customer_id">المشروع</label>
                         <select required name="customer_id" id="customer_id" class="ui search dropdown">
                             <option value="">المشروع</option>
@@ -17,18 +17,18 @@
                         </select>
                     </div>
 
-                    <div class="field">
+                    <div class=" full-width-mobile field">
                         <label for="fromDate">من تاريخ</label>
                         <input id="fromDate" type="date" name="fromDate" value="{{request()->query("fromDate" , date('Y-m-d'))}}"
                                placeholder="من تاريخ"/>
                     </div>
-                    <div class="field">
+                    <div class="full-width-mobile field">
                         <label for="toDate">الي تاريخ</label>
                         <input id="toDate" type="date" name="toDate" value="{{request()->query("toDate",date('Y-m-d'))}}"
                                placeholder="الي تاريخ"/>
                     </div>
 
-                    <div class="field">
+                    <div class="full-width-mobile field">
                         <label for="category_id">صنف العملية</label>
                         <select required name="category_id" id="category_id" class="ui search dropdown">
                             <option {{request()->query("category_id") == 0 ? "selected": ""}} value="0">الكل</option>
@@ -90,11 +90,44 @@
                         @endif
                     </td>
                     <td>{{$row->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "قبض" : "صرف"}}</td>
-                    <td class="six wide">{{$row->details}}</td>
+                    <td class="six wide">
+                        <p>{{$row->details}}</p>
+                        <hr /> 
+                        <p>انشئت بواسطة : {{$row->createByName ?? '-'}}</p>
+                        <p>انشئت في : {{$row->created_at}}</p>
+                        <p>تم التعديل بواسطة : {{$row->updatedByName ?? '-'}}</p>
+                        <p>اخر تعديل في : {{$row->updated_at}}</p>
+                    </td>
                     <td>{{$row->categoryName}}</td>
                     <td>{{$row->date}}</td>
                 </tr>
             @endforeach
+            @if($result && count($result) > 0)
+                <tr>
+                    <td></td>
+                    <td></td>
+                    @php
+                        $totalDepositInView = array_reduce($result, function($carry, $item) {
+                            if ($item->type === \App\Models\Action::ACTION_TYPE_DEPOSIT) {
+                                return $carry + $item->amount;
+                            }
+                            return $carry;
+                        }, 0);
+                        $totalWithdrawInView = array_reduce($result, function($carry, $item) {
+                            if ($item->type === \App\Models\Action::ACTION_TYPE_WITHDRAW) {
+                                return $carry + $item->amount;
+                            }
+                            return $carry;
+                        }, 0);
+                    @endphp
+                    <td style="background: #DDD">{{number_format($totalDepositInView)}}</td>
+                    <td style="background: #DDD">{{number_format($totalWithdrawInView)}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            @endif
             </tbody>
         </table>
 

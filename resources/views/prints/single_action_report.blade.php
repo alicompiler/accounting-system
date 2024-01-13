@@ -84,7 +84,7 @@
 
             <div class="item-info">
                 <span class="key-span">التصنيف</span>
-                <span>{{$action->category->name}}</span>
+                <span>{{$action->category ? $action->category->name : '-'}}</span>
             </div>
 
             <div class="item-info">

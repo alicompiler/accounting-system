@@ -1,4 +1,9 @@
 <div class="app-header">
+    <div>
+        <button onclick="toggleMobileMenu();" class="ui icon button mobile-menu-toggle-button">
+            <i class="align justify icon"></i>
+        </button>
+    </div>
     <div class="action-bar">
         <div>
         </div>
@@ -11,5 +16,4 @@
             </div>
         </div>
     </div>
-
 </div>

@@ -1,31 +1,28 @@
-* add category to action (optional)
-* categories are dynamic
-* display category in the report but not in print
-* filter by category
+X *add category to action (optional)
+X* categories are dynamic
+X *display category in the report but not in print
+X* filter by category
 
-* optional multiple images with action
-* display upload attachments in the report
+X *optional multiple images with action
+X* display upload attachments in the report
 
-* open in mobile
+X * open in mobile
 
 * connect online
 
-* set action registered by
-* updated_at, updated_by
-* skip in printing
+X *set action registered by
+X* updated_at, updated_by
+X * skip in printing
 
-* calculate the sumuation of the expanses in the report
+X * calculate the sum of the expanses in the report
 
 * logout for every session
 
-* session expiry short term
+X * session expiry short term
 
 * auto-backup ? cron job locally ?
 
 * printing could hide one record in bottom of the page
 
-
-
 // check later
-update order by to be with created_at not date
 change upload size

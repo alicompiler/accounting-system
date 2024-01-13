@@ -8,12 +8,12 @@
 
                 <div class="fields" style="display: inline-flex;margin: 0;">
 
-                    <div class="field">
+                    <div class="full-width-mobile field">
                         <label for="fromDate">من تاريخ</label>
                         <input id="fromDate" type="date" name="fromDate" value="{{request()->query("fromDate" , date('Y-m-d'))}}"
                                placeholder="من تاريخ"/>
                     </div>
-                    <div class="field">
+                    <div class="full-width-mobile field">
                         <label for="toDate">الي تاريخ</label>
                         <input id="toDate" type="date" name="toDate" value="{{request()->query("toDate" , date('Y-m-d'))}}"
                                placeholder="الي تاريخ"/>

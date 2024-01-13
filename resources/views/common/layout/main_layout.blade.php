@@ -17,7 +17,7 @@
     <script src="{{url('/res/app.js')}}"></script>
     <script src="{{url('/res/notifications.js')}}"></script>
 
-    <title>اسم النظام</title>
+    <title>شركة افاق السنا</title>
 </head>
 <body>
 
@@ -26,8 +26,27 @@
 <div id="app">
     @include('common.layout.sidebar')
 
-    <div class="app-container">
+    <div class="pusher app-container">
         @include('common.layout.header')
+
+        <div class="mobile-menu" id="mobile-menu">
+       
+                <div class="mobile-menu-items">
+
+                    <span class="user-name">
+                        {{request()->get('user')->name}}
+                    </span>
+
+                    <a href="{{route("customers")}}" class="item">المشاريع</a>
+                    <a href="{{route("actions:create")}}" class="item">تسجيل عملية</a>
+                    <a href="{{route("report:customer")}}" class="item">تقرير عن مشروع</a>
+                    <a href="{{route("report:action")}}" class="item">تقرير عن عمليات</a>
+                    <a href="{{route("report:all-customers")}}" class="item">تقرير عن كل المشاريع</a>
+                    <a class="close-button" onclick="toggleMobileMenu();">اخفاء</a>
+
+                </div>
+
+        </div>
 
         <div style="padding: 16px;" class="ui container">
             @yield('container')

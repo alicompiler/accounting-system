@@ -11,7 +11,7 @@
 
     <div class="item-info">
         <span class="key-span">صنف العملية</span>
-        <span>{{$action->category->name}}</span>
+        <span>{{$action->category ? $action->category->name : '-'}}</span>
     </div>
 
     <div class="item-info">
@@ -38,15 +38,29 @@
     </div>
 
     <div class="item-info">
-        <span class="key-span">التاريخ الانشاء</span>
-        <span>{{date('Y-m-d' , strtotime($action->created_at))}}</span>
-    </div>
-
-    <div class="item-info">
         <span class="key-span">التفاصيل</span>
         <span>{!! nl2br(htmlentities($action->details)) !!}</span>
     </div>
 
+    <div class="item-info">
+        <span class="key-span">انشئت بواسطة</span>
+        <span>{{$action->createdBy ? $action->createdBy->name : '-'}}</span>
+    </div>
+
+    <div class="item-info">
+        <span class="key-span">تم الانشاء في</span>
+        <span>{{$action->created_at}}</span>
+    </div>
+
+    <div class="item-info">
+        <span class="key-span">اخر تعديل بواسطة</span>
+        <span>{{$action->updatedBy ? $action->updatedBy->name : '-'}}</span>
+    </div>
+
+    <div class="item-info">
+        <span class="key-span">اخر تعديل في</span>
+        <span>{{$action->updated_at}}</span>
+    </div>
 
     @if(count($action->files) > 0)
         <div class="item-info">

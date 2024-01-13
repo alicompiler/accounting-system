@@ -37,7 +37,9 @@ class ActionController extends Controller {
         $action = new Action($request->all());
         $files = $request->file("files");
         $service = new RegisterActionService($action);
-        $service->register($files);
+        $currentUser = $request->attributes->get("user");
+        $action->created_by_id = $currentUser->id;
+        $service->register($files ?? []);
         return redirect(route("actions:single", ["id" => $action->id]));
     }
 
@@ -46,6 +48,8 @@ class ActionController extends Controller {
         $action = new Action($request->all());
         $prevActionId = $request->get("id");
         $service = new EditActionService($action, $prevActionId);
+        $currentUser = $request->attributes->get("user");
+        $action->updated_by_id = $currentUser->id;
         try {
             $service->update();
             return redirect(route("actions:single", ["id" => $action->id]));

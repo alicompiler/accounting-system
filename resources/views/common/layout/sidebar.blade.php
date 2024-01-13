@@ -4,15 +4,4 @@
         @include('common.layout.menu')
     </div>
 
-
 </div>
-
-
-<script>
-
-    $(".ui.sidebar").sidebar({
-        transition : 'overlay',
-    });
-
-
-</script>

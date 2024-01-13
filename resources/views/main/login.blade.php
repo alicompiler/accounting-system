@@ -36,12 +36,12 @@
         @CSRF
         <div class="field">
             <label id="username">اسم المستخدم</label>
-            <input name="username" id="username" type="text" placeholder="اسم المستخدم">
+            <input class="full-width-mobile" name="username" id="username" type="text" placeholder="اسم المستخدم">
         </div>
 
         <div class="field">
             <label id="password">كلمة المرور</label>
-            <input name="password" id="password" type="password" placeholder="كلمة المرور">
+            <input class="full-width-mobile" name="password" id="password" type="password" placeholder="كلمة المرور">
         </div>
 
         <button class="ui blue button fluid">

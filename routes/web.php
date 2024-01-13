@@ -63,3 +63,8 @@ Route::get("/print/action/{id}", "ReportController@printSingleActionReport")->na
 Route::get("/password", function (\Illuminate\Http\Request $request) {
     return Hash::make($request->get("password", ''));
 });
+
+
+Route::get('/', function () {
+    return redirect('/report/customer');
+});

@@ -296,3 +296,10 @@ NumberToWords.prototype.columns = ["trilions", "bilions", "milions", "thousands"
 // console.log(new NumberToWords(77627000).parse());
 // console.log(new NumberToWords(100765423).parse());
 // console.log(new NumberToWords(1976421170).parse());
+
+
+
+function toggleMobileMenu() {
+    var mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.style.display = (mobileMenu.style.display === 'flex') ? 'none' : 'flex';
+}

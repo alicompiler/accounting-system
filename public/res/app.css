@@ -52,6 +52,8 @@ body {
     background: #FFF;
     padding: 16px;
     box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+    display: flex;
+    justify-content: space-between;
 }
 
 .app-header .user-info {
@@ -206,3 +208,74 @@ body {
 }
 
 /*---- endregion*/
+
+.mobile-menu-toggle-button {
+    display: none !important;
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.mobile-menu-items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+    align-items: center;
+}
+
+.mobile-menu-items .user-name {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.mobile-menu-items a {
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #3498db;
+    width: 220px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.mobile-menu-items .close-button {
+    background-color: #E44;
+}
+
+@media screen and (max-width: 1199px) {
+    .mobile-menu-toggle-button {
+        display: block !important;
+    }
+}
+
+
+
+
+
+.app-form {
+    width: 50% !important;
+}
+
+@media screen and (max-width: 767px) {
+    .app-form {
+        width: 100% !important;
+    }
+
+    .full-width-mobile {
+        width: 100% !important;
+    }
+}

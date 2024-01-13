@@ -22,7 +22,7 @@ class LoginController extends Controller {
             if ($isPasswordMatch) {
                 $request->session()->put(self::USERNAME_KEY, $employee->username);
                 $request->session()->put(self::EMPLOYEE_ID_KEY, $employee->id);
-                return redirect(route('home'));
+                return redirect('/');
             }
         }
 

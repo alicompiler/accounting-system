@@ -55,4 +55,12 @@ class Action extends Model {
     public function files() {
         return $this->hasMany("App\Models\ActionFile", "action_id", "id");
     }
+
+    public function createdBy() {
+        return $this->hasOne("App\Models\User", "id", "created_by_id");
+    }
+
+    public function updatedBy() {
+        return $this->hasOne("App\Models\User", "id", "updated_by_id");
+    }
 }
