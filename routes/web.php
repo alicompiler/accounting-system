@@ -73,3 +73,43 @@ Route::get("/password", function (\Illuminate\Http\Request $request) {
 Route::get('/', function () {
     return redirect('/report/customer');
 });
+
+
+Route::get('/backup', function () {
+    // Specify the path where the backup file will be stored
+    $backupPath = storage_path('app/backup.sql');
+
+    // Get a list of tables in the database
+    $tables = DB::select('SHOW TABLES');
+
+    // Loop through each table
+    $sqlContent = '';
+    foreach ($tables as $table) {
+        $tableName = reset($table);
+
+        // Get the table structure
+        $tableStructure = DB::select("SHOW CREATE TABLE `$tableName`")[0]->{'Create Table'};
+
+        // Get the table data
+        $tableData = DB::table($tableName)->get();
+
+        // Generate SQL for table structure
+        $sqlContent .= "$tableStructure;\n";
+
+        // Generate SQL for table data
+        foreach ($tableData as $record) {
+            $values = implode(', ', array_map(function ($value) {
+                return "'$value'";
+            }, (array)$record));
+            $sqlContent .= "INSERT INTO `$tableName` VALUES ($values);\n";
+        }
+    }
+
+    // Write the SQL content to the backup file
+    file_put_contents($backupPath, $sqlContent);
+
+    // Provide a response to the user
+    $downloadFileName = 'backup-' . date('YmdHi') . '.sql';
+    return response()->download($backupPath, $downloadFileName)->deleteFileAfterSend();
+    
+})->name("backup")->middleware("auth");

@@ -42,6 +42,7 @@
                     <a href="{{route("report:customer")}}" class="item">تقرير عن مشروع</a>
                     <a href="{{route("report:action")}}" class="item">تقرير عن عمليات</a>
                     <a href="{{route("report:all-customers")}}" class="item">تقرير عن كل المشاريع</a>
+                    <a id='backup-button-mobile' href="{{route('backup')}}" class="item">Backup</a>
                     <a class="close-button" onclick="toggleMobileMenu();">اخفاء</a>
 
                 </div>
@@ -61,6 +62,15 @@
 
 <script>
     $(".ui.dropdown").dropdown();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const backupButton = document.getElementById('backup-button-mobile');
+        backupButton.addEventListener('click', function (e) {
+            if (!confirm('هل تريد عمل نسخة احتياطية من البيانات؟')) {
+                e.preventDefault();
+            }
+        });
+    });
 </script>
 
 

@@ -28,7 +28,7 @@
                                placeholder="الي تاريخ"/>
                     </div>
 
-                    <div class="full-width-mobile field">
+                    <div class="full-width-mobile field" style="display: none;">
                         <label for="category_id">صنف العملية</label>
                         <select required name="category_id" id="category_id" class="ui search dropdown">
                             <option {{request()->query("category_id") == 0 ? "selected": ""}} value="0">الكل</option>

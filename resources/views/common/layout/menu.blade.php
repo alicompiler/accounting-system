@@ -14,15 +14,25 @@
 
         <div class="items">
 
-            <a href="{{route("customers")}}" class="item">المشاريع</a>
-            {{--<a href="{{route("categories")}}" class="item">التصنيفات</a>--}}
-            <a href="{{route("actions:create")}}" class="item">تسجيل عملية</a>
-            <a href="{{route("report:customer")}}" class="item">تقرير عن مشروع</a>
-            <a href="{{route("report:action")}}" class="item">تقرير عن عمليات</a>
-            <a href="{{route("report:all-customers")}}" class="item">تقرير عن كل المشاريع</a>
+            <a href="{{route('customers')}}" class="item">المشاريع</a>
+            {{--<a href="{{route('categories')}}" class="item">التصنيفات</a>--}}
+            <a href="{{route('actions:create')}}" class="item">تسجيل عملية</a>
+            <a href="{{route('report:customer')}}" class="item">تقرير عن مشروع</a>
+            <a href="{{route('report:action')}}" class="item">تقرير عن عمليات</a>
+            <a href="{{route('report:all-customers')}}" class="item">تقرير عن كل المشاريع</a>
+            <a id='backup-button' href="{{route('backup')}}" id='backup-button' class="item">Backup</a>
 
         </div>
 
     </div>
+
+    <script>
+        const backupButton = document.getElementById('backup-button');
+        backupButton.addEventListener('click', function (e) {
+            if(!confirm('هل تريد عمل نسخة احتياطية من البيانات؟')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 
 </div>

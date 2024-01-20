@@ -30,9 +30,11 @@
                 </select>
             </div>
 
-            <div class="field">
+            <div class="field" style="display: none;">
                 <label for="category_id">صنف العملية</label>
                 <select name="category_id" id="category_id" class="ui search dropdown">
+                    <option value="-1" selected></option>
+
                     @foreach ($categories as $category)
                         <option {{$category->id == $action->category_id ? "selected" : ""}} value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
