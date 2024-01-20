@@ -1,4 +1,4 @@
-@extends("common.layout.main_layout")
+@extends("common.layout.main_layout", ['viewport' => false])
 
 @section('container')
     <div>
@@ -63,7 +63,6 @@
                 <th>المصاريف</th>
                 <th>النوع</th>
                 <th>التفاصيل</th>
-                <th>صنف العملية</th>
                 <th>التاريخ</th>
             </tr>
             </thead>
@@ -92,13 +91,7 @@
                     <td>{{$row->type == \App\Models\Action::ACTION_TYPE_DEPOSIT ? "قبض" : "صرف"}}</td>
                     <td class="six wide">
                         <p>{{$row->details}}</p>
-                        <hr /> 
-                        <p>انشئت بواسطة : {{$row->createByName ?? '-'}}</p>
-                        <p>انشئت في : {{$row->created_at}}</p>
-                        <p>تم التعديل بواسطة : {{$row->updatedByName ?? '-'}}</p>
-                        <p>اخر تعديل في : {{$row->updated_at}}</p>
                     </td>
-                    <td>{{$row->categoryName}}</td>
                     <td>{{$row->date}}</td>
                 </tr>
             @endforeach
@@ -122,7 +115,6 @@
                     @endphp
                     <td style="background: #DDD">{{number_format($totalDepositInView)}}</td>
                     <td style="background: #DDD">{{number_format($totalWithdrawInView)}}</td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
