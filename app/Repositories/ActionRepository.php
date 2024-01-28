@@ -31,7 +31,7 @@ class ActionRepository {
                                               CASE WHEN  action.type = ? THEN @totalWithdraw := @totalWithdraw + action.amount ELSE @totalWithdraw END AS totalWithdraw
                                         FROM action , (SELECT @total := 0 , @totalDeposit :=0 , @totalWithdraw := 0) T 
                                         WHERE customer_id = ?
-                                        ORDER BY date
+                                        ORDER BY date, action.id
         )T LEFT JOIN category ON T.category_id = category.id 
         LEFT JOIN user AS createdBy ON T.created_by_id = createdBy.id
         LEFT JOIN user AS updatedBy ON T.updated_by_id = updatedBy.id
@@ -53,7 +53,7 @@ class ActionRepository {
             $params[] = $categoryId;
         }
 
-        $sql = $sql . " ORDER BY date";
+        $sql = $sql . " ORDER BY date, T.id";
         return DB::select($sql, $params);
     }
 
